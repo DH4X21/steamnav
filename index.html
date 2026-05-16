@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steam 热门端游导航 - SteamNav</title>
+<meta name="description" content="Steam热门端游导航站，收录外网最火PC游戏，FPS/MOBA/RPG/生存/策略一网打尽">
+<meta name="keywords" content="Steam,热门游戏,端游导航,PC游戏,FPS,MOBA,RPG,免费游戏">
+
+<!-- Google AdSense (替换 ca-pub-XXXXXXXXXXXXXXXX 为你的发布商ID) -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg-dark: #0a0e17;
+    --bg-card: #141b2d;
+    --bg-card-hover: #1a2340;
+    --accent-blue: #66c0f4;
+    --accent-green: #4caf50;
+    --accent-purple: #9c27b0;
+    --accent-orange: #ff9800;
+    --accent-red: #f44336;
+    --accent-cyan: #00bcd4;
+    --text-primary: #e0e0e0;
+    --text-secondary: #8f98a0;
+    --border-color: #2a3a5c;
+    --neon-glow: 0 0 10px rgba(102,192,244,0.3), 0 0 20px rgba(102,192,244,0.1);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(102,192,244,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(156,39,176,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(0,188,212,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== Header ===== */
+  header {
+    padding: 32px 0 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 24px;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .logo-area { display: flex; align-items: center; gap: 16px; }
+
+  .logo-icon {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    box-shadow: var(--neon-glow);
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(102,192,244,0.3), 0 0 20px rgba(102,192,244,0.1); }
+    50% { box-shadow: 0 0 20px rgba(102,192,244,0.5), 0 0 40px rgba(102,192,244,0.2); }
+  }
+
+  .logo-text h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px; font-weight: 900;
+    background: linear-gradient(90deg, var(--accent-blue), #a78bfa, var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+  }
+
+  .logo-text p { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+
+  .header-right {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+
+  .search-box {
+    display: flex; align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0 16px;
+    width: 340px; max-width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .search-box:focus-within {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 12px rgba(102,192,244,0.15);
+  }
+
+  .search-box input {
+    flex: 1; background: none; border: none; outline: none;
+    color: var(--text-primary); padding: 12px 8px;
+    font-size: 14px; font-family: inherit;
+  }
+
+  .search-box input::placeholder { color: var(--text-secondary); }
+  .search-box .search-icon { font-size: 18px; color: var(--text-secondary); }
+
+  /* ===== 分类 ===== */
+  .category-bar {
+    display: flex; gap: 10px; padding: 20px 0;
+    flex-wrap: wrap; align-items: center;
+  }
+
+  .category-bar .label { font-size: 13px; color: var(--text-secondary); margin-right: 4px; font-weight: 500; }
+
+  .cat-btn {
+    padding: 8px 18px; border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background: transparent; color: var(--text-secondary);
+    cursor: pointer; font-size: 13px; font-family: inherit;
+    transition: all 0.25s; white-space: nowrap;
+  }
+
+  .cat-btn:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    background: rgba(102,192,244,0.08);
+  }
+
+  .cat-btn.active {
+    background: linear-gradient(135deg, rgba(102,192,244,0.2), rgba(156,39,176,0.15));
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    box-shadow: 0 0 8px rgba(102,192,244,0.15);
+  }
+
+  /* ===== 主布局 ===== */
+  .main-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+  }
+
+  @media (max-width: 1024px) {
+    .main-layout { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+  }
+
+  /* ===== 游戏卡片 ===== */
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+
+  .game-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+  }
+
+  .game-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 16px rgba(102,192,244,0.1);
+  }
+
+  .game-card .cover-wrap {
+    width: 100%; aspect-ratio: 16/9;
+    overflow: hidden; position: relative;
+  }
+
+  .game-card .cover-wrap::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: linear-gradient(transparent, var(--bg-card));
+    pointer-events: none;
+  }
+
+  .game-card .cover {
+    width: 100%; aspect-ratio: 16/9;
+    object-fit: cover; display: block;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    transition: transform 0.3s;
+  }
+
+  .game-card:hover .cover { transform: scale(1.05); }
+
+  .game-card .img-placeholder {
+    width: 100%; aspect-ratio: 16/9;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    position: absolute; top: 0; left: 0;
+    transition: opacity 0.4s;
+  }
+
+  .game-card .img-placeholder.hidden { opacity: 0; pointer-events: none; }
+
+  .game-card .info { padding: 14px; }
+
+  .game-card .info h3 {
+    font-size: 13px; font-weight: 700; margin-bottom: 8px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;
+  }
+
+  .game-card .meta { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+
+  .game-card .price { color: var(--accent-green); font-weight: 700; }
+  .game-card .price.free { color: var(--accent-cyan); }
+  .game-card .rating { display: flex; align-items: center; gap: 4px; color: var(--accent-orange); }
+
+  .game-card .tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+
+  .game-card .tag {
+    font-size: 10px; padding: 2px 8px; border-radius: 10px;
+    background: rgba(102,192,244,0.1); color: var(--accent-blue);
+    border: 1px solid rgba(102,192,244,0.15);
+  }
+
+  .game-card .hot-badge {
+    position: absolute; top: 10px; left: 10px;
+    background: linear-gradient(135deg, #f44336, #ff5722);
+    color: #fff; font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(244,67,54,0.4); z-index: 2;
+  }
+
+  .game-card .discount-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: var(--accent-green); color: #fff;
+    font-size: 12px; font-weight: 900;
+    padding: 3px 8px; border-radius: 4px; z-index: 2;
+  }
+
+  /* ===== 广告位系统 ===== */
+  .ad-slot {
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+  }
+
+  /* 顶部横幅广告 */
+  .ad-slot-top {
+    background: linear-gradient(135deg, #1a1a3e, #0d1b2a);
+    border: 1px dashed var(--border-color);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ad-slot-top::before {
+    content: '';
+    position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: conic-gradient(transparent, rgba(102,192,244,0.05), transparent, rgba(156,39,176,0.05), transparent);
+    animation: rotate-bg 20s linear infinite;
+  }
+
+  @keyframes rotate-bg { 100% { transform: rotate(360deg); } }
+
+  .ad-slot-top .ad-content { position: relative; z-index: 1; }
+
+  .ad-slot-top .ad-label {
+    font-size: 11px; color: var(--text-secondary);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;
+  }
+
+  .ad-slot-top .ad-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px; font-weight: 700;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+
+  .ad-slot-top .ad-desc { color: var(--text-secondary); font-size: 14px; margin-bottom: 16px; }
+
+  .ad-slot-top .ad-cta {
+    display: inline-block; padding: 10px 32px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: #fff; border-radius: 24px; text-decoration: none;
+    font-weight: 700; font-size: 14px;
+    transition: all 0.3s; border: none; cursor: pointer;
+  }
+
+  .ad-slot-top .ad-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(102,192,244,0.3);
+  }
+
+  /* 中部内容广告 */
+  .ad-slot-mid {
+    background: rgba(20,27,45,0.8);
+    border: 1px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ad-slot-mid .ad-label {
+    font-size: 11px; color: #444; letter-spacing: 2px;
+  }
+
+  /* 侧栏广告 */
+  .sidebar .ad-slot-side {
+    background: rgba(20,27,45,0.6);
+    border: 1px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar .ad-slot-side .ad-label {
+    font-size: 11px; color: #444; letter-spacing: 2px;
+  }
+
+  /* 底部横幅广告 */
+  .ad-slot-bottom {
+    background: rgba(20,27,45,0.6);
+    border: 1px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 20px 0;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ===== 侧栏 ===== */
+  .sidebar { position: relative; }
+
+  .sidebar-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-section h4 {
+    font-size: 14px; font-weight: 700;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .sidebar-section .rank-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(42,58,92,0.4);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .sidebar-section .rank-item:last-child { border-bottom: none; }
+  .sidebar-section .rank-item:hover { background: rgba(102,192,244,0.05); }
+
+  .sidebar-section .rank-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px; font-weight: 900;
+    width: 28px; text-align: center;
+  }
+
+  .sidebar-section .rank-num.top1 { color: #ffd700; }
+  .sidebar-section .rank-num.top2 { color: #c0c0c0; }
+  .sidebar-section .rank-num.top3 { color: #cd7f32; }
+
+  .sidebar-section .rank-info { flex: 1; min-width: 0; }
+  .sidebar-section .rank-info .name {
+    font-size: 12px; font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sidebar-section .rank-info .players {
+    font-size: 11px; color: var(--text-secondary);
+  }
+
+  .sidebar-section .rank-thumb {
+    width: 48px; height: 27px;
+    border-radius: 4px; object-fit: cover;
+    background: #1a1a2e;
+  }
+
+  /* ===== 分区标题 ===== */
+  .section-title {
+    display: flex; align-items: center;
+    gap: 12px; margin: 28px 0 16px;
+    font-size: 18px; font-weight: 700;
+  }
+
+  .section-title .icon { font-size: 22px; }
+
+  .section-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, var(--border-color), transparent);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    text-align: center; padding: 32px 0; margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary); font-size: 13px;
+  }
+
+  footer a { color: var(--accent-blue); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  .stats-bar { display: flex; gap: 24px; padding: 16px 0; flex-wrap: wrap; }
+
+  .stat-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); }
+
+  .stat-item .num {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700; font-size: 20px; color: var(--accent-blue);
+  }
+
+  /* ===== Cookie 同意栏 ===== */
+  .cookie-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(10,14,23,0.95);
+    border-top: 1px solid var(--border-color);
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px; z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+
+  .cookie-bar p { font-size: 13px; color: var(--text-secondary); }
+
+  .cookie-bar .cookie-accept {
+    padding: 8px 20px;
+    background: var(--accent-blue); color: #000;
+    border: none; border-radius: 8px;
+    font-weight: 700; font-size: 13px;
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .cookie-bar .cookie-accept:hover { background: #8ad4ff; }
+
+  .cookie-bar.hidden { display: none; }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
+
+  @media (max-width: 768px) {
+    .header-top { flex-direction: column; align-items: flex-start; }
+    .search-box { width: 100%; }
+    .game-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    .ad-slot-top { padding: 20px 16px; }
+    .ad-slot-top .ad-title { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <header>
+    <div class="header-top">
+      <div class="logo-area">
+        <div class="logo-icon">🎮</div>
+        <div class="logo-text">
+          <h1>STEAM NAV</h1>
+          <p>外网热门端游导航 · 实时更新</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="搜索游戏名称或标签..." oninput="filterGames()">
+        </div>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item"><span class="num" id="totalCount">0</span> 款游戏收录</div>
+      <div class="stat-item"><span class="num" id="onlineCount">0</span> 万在线玩家</div>
+      <div class="stat-item"><span class="num">24h</span> 数据更新</div>
+    </div>
+  </header>
+
+  <!-- 顶部横幅广告 -->
+  <div class="ad-slot ad-slot-top" id="ad-top-banner">
+    <div class="ad-content">
+      <div class="ad-label">— ADVERTISEMENT —</div>
+      <div class="ad-title">🎮 游戏加速器限时特惠</div>
+      <div class="ad-desc">低延迟畅玩Steam外服 · 全球节点智能加速 · 新用户免费体验3天</div>
+      <button class="ad-cta" onclick="alert('广告位联系：ad@steamnav.com')">立即领取</button>
+    </div>
+  </div>
+
+  <!-- 分类 -->
+  <div class="category-bar">
+    <span class="label">📂 分类：</span>
+    <button class="cat-btn active" data-cat="all" onclick="setCategory(this)">全部</button>
+    <button class="cat-btn" data-cat="fps" onclick="setCategory(this)">🔫 FPS射击</button>
+    <button class="cat-btn" data-cat="moba" onclick="setCategory(this)">⚔️ MOBA</button>
+    <button class="cat-btn" data-cat="rpg" onclick="setCategory(this)">🗡️ 角色扮演</button>
+    <button class="cat-btn" data-cat="survival" onclick="setCategory(this)">🏕️ 生存</button>
+    <button class="cat-btn" data-cat="strategy" onclick="setCategory(this)">♟️ 策略</button>
+    <button class="cat-btn" data-cat="racing" onclick="setCategory(this)">🏎️ 竞速</button>
+    <button class="cat-btn" data-cat="sports" onclick="setCategory(this)">⚽ 体育</button>
+    <button class="cat-btn" data-cat="sandbox" onclick="setCategory(this)">🧱 沙盒</button>
+    <button class="cat-btn" data-cat="horror" onclick="setCategory(this)">👻 恐怖</button>
+  </div>
+
+  <!-- 主内容区 -->
+  <div class="main-layout">
+    <div class="content-area">
+      <!-- 热门推荐 -->
+      <div class="section-title"><span class="icon">🔥</span> 热门推荐</div>
+      <div class="game-grid" id="hotGames"></div>
+
+      <!-- 中部广告位 -->
+      <div class="ad-slot ad-slot-mid" id="ad-mid-content">
+        <!-- Google AdSense 横幅广告位 (728x90) -->
+        <!-- <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins> -->
+        <!-- <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+        <span class="ad-label">AD SPACE · 728×90</span>
+      </div>
+
+      <!-- 最新热门 -->
+      <div class="section-title"><span class="icon">🆕</span> 最新热门</div>
+      <div class="game-grid" id="newGames"></div>
+
+      <!-- 免费畅玩 -->
+      <div class="section-title"><span class="icon">🆓</span> 免费畅玩</div>
+      <div class="game-grid" id="freeGames"></div>
+
+      <!-- 底部广告位 -->
+      <div class="ad-slot ad-slot-bottom" id="ad-bottom-banner">
+        <!-- Google AdSense 横幅广告位 (728x90) -->
+        <!-- <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins> -->
+        <!-- <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+        <span class="ad-label">AD SPACE · 728×90</span>
+      </div>
+    </div>
+
+    <!-- 侧栏 -->
+    <aside class="sidebar">
+      <!-- 侧栏广告位 1 -->
+      <div class="ad-slot ad-slot-side" id="ad-side-1">
+        <!-- Google AdSense 侧栏广告 (300x250) -->
+        <!-- <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins> -->
+        <!-- <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+        <span class="ad-label">AD SPACE · 300×250</span>
+      </div>
+
+      <!-- 人气排行 -->
+      <div class="sidebar-section">
+        <h4>🏆 人气排行</h4>
+        <div id="rankList"></div>
+      </div>
+
+      <!-- 侧栏广告位 2 -->
+      <div class="ad-slot ad-slot-side" id="ad-side-2">
+        <span class="ad-label">AD SPACE · 300×250</span>
+      </div>
+
+      <!-- 好评排行 -->
+      <div class="sidebar-section">
+        <h4>⭐ 好评排行</h4>
+        <div id="ratingList"></div>
+      </div>
+
+      <!-- 侧栏广告位 3 -->
+      <div class="ad-slot ad-slot-side" id="ad-side-3">
+        <span class="ad-label">AD SPACE · 300×250</span>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>Steam Nav · 外网热门端游导航站 · 数据来源于 Steam 公开信息</p>
+    <p style="margin-top:8px;">
+      <a href="https://store.steampowered.com" target="_blank">Steam 官网</a> ·
+      <a href="https://steamdb.info" target="_blank">SteamDB</a> ·
+      <a href="https://steamcommunity.com" target="_blank">Steam 社区</a> ·
+      <a href="mailto:ad@steamnav.com">广告合作</a>
+    </p>
+    <p style="margin-top:8px;font-size:11px;">
+      <a href="/privacy.html">隐私政策</a> ·
+      <a href="/terms.html">使用条款</a>
+    </p>
+    <p style="margin-top:12px;font-size:11px;color:#555;">© 2026 SteamNav. 本站非 Valve 官方产品，仅供导航参考。</p>
+  </footer>
+</div>
+
+<!-- Cookie 同意栏（AdSense 要求） -->
+<div class="cookie-bar" id="cookieBar">
+  <p>🍪 本站使用 Cookie 提供更好的浏览体验并展示个性化广告，继续浏览即表示同意。</p>
+  <button class="cookie-accept" onclick="acceptCookies()">同意</button>
+</div>
+
+<script>
+const GAMES = [
+  { name:"Counter-Strike 2", cat:"fps", price:"免费", free:true, rating:4.8, hot:true, tags:["FPS","竞技","多人"], emoji:"🔫", discount:null, appId:730, players:"120万" },
+  { name:"Call of Duty: MW III", cat:"fps", price:"¥299", free:false, rating:4.2, hot:true, tags:["FPS","剧情","多人"], emoji:"💥", discount:"-20%", appId:1938090, players:"8万" },
+  { name:"Valorant", cat:"fps", price:"免费", free:true, rating:4.6, hot:true, tags:["FPS","战术","5v5"], emoji:"🎯", discount:null, appId:null, players:"65万" },
+  { name:"Apex Legends", cat:"fps", price:"免费", free:true, rating:4.4, hot:true, tags:["大逃杀","FPS","英雄"], emoji:"🦾", discount:null, appId:1172470, players:"18万" },
+  { name:"Overwatch 2", cat:"fps", price:"免费", free:true, rating:4.1, hot:false, tags:["FPS","英雄射击","6v6"], emoji:"🤖", discount:null, appId:2357570, players:"5万" },
+  { name:"Rainbow Six Siege", cat:"fps", price:"¥68", free:false, rating:4.5, hot:true, tags:["FPS","战术","破坏"], emoji:"🚪", discount:"-50%", appId:359550, players:"7万" },
+  { name:"Destiny 2", cat:"fps", price:"免费", free:true, rating:4.3, hot:false, tags:["FPS","RPG","在线"], emoji:"🌌", discount:null, appId:1085660, players:"4万" },
+  { name:"Hunt: Showdown", cat:"fps", price:"¥98", free:false, rating:4.4, hot:false, tags:["FPS","PvPvE","恐怖"], emoji:"🩸", discount:null, appId:594650, players:"1.5万" },
+  { name:"The Finals", cat:"fps", price:"免费", free:true, rating:4.0, hot:false, tags:["FPS","破坏","竞技"], emoji:"🏗️", discount:null, appId:2073850, players:"2万" },
+  { name:"Battlefield 2042", cat:"fps", price:"¥59", free:false, rating:3.8, hot:false, tags:["FPS","大战场","载具"], emoji:"✈️", discount:"-70%", appId:1517290, players:"1万" },
+  { name:"Dota 2", cat:"moba", price:"免费", free:true, rating:4.7, hot:true, tags:["MOBA","竞技","5v5"], emoji:"🗡️", discount:null, appId:570, players:"45万" },
+  { name:"League of Legends", cat:"moba", price:"免费", free:true, rating:4.5, hot:true, tags:["MOBA","竞技","5v5"], emoji:"🏆", discount:null, appId:null, players:"80万" },
+  { name:"Deadlock", cat:"moba", price:"免费", free:true, rating:4.2, hot:true, tags:["MOBA","TPS","Valve"], emoji:"🔒", discount:null, appId:1422450, players:"3万" },
+  { name:"Smite 2", cat:"moba", price:"免费", free:true, rating:3.9, hot:false, tags:["MOBA","第三人称","神话"], emoji:"⚡", discount:null, appId:2437130, players:"0.5万" },
+  { name:"Elden Ring", cat:"rpg", price:"¥298", free:false, rating:4.9, hot:true, tags:["RPG","魂系","开放世界"], emoji:"💍", discount:"-25%", appId:1245620, players:"5万" },
+  { name:"Baldur's Gate 3", cat:"rpg", price:"¥298", free:false, rating:4.9, hot:true, tags:["RPG","CRPG","剧情"], emoji:"🐉", discount:null, appId:1086940, players:"10万" },
+  { name:"Cyberpunk 2077", cat:"rpg", price:"¥149", free:false, rating:4.5, hot:false, tags:["RPG","赛博朋克","开放世界"], emoji:"🌃", discount:"-50%", appId:1091500, players:"3万" },
+  { name:"The Witcher 3", cat:"rpg", price:"¥127", free:false, rating:4.8, hot:false, tags:["RPG","奇幻","剧情"], emoji:"🐺", discount:"-80%", appId:292030, players:"2万" },
+  { name:"Diablo IV", cat:"rpg", price:"¥298", free:false, rating:4.1, hot:false, tags:["ARPG","刷宝","暗黑"], emoji:"👹", discount:"-40%", appId:null, players:"1万" },
+  { name:"Path of Exile 2", cat:"rpg", price:"免费", free:true, rating:4.6, hot:true, tags:["ARPG","刷宝","暗黑"], emoji:"💀", discount:null, appId:2389720, players:"15万" },
+  { name:"Monster Hunter Wilds", cat:"rpg", price:"¥398", free:false, rating:4.4, hot:true, tags:["ARPG","狩猎","多人"], emoji:"🦖", discount:null, appId:2246340, players:"8万" },
+  { name:"Palworld", cat:"survival", price:"¥98", free:false, rating:4.3, hot:true, tags:["生存","抓宠","建造"], emoji:"🐾", discount:"-20%", appId:1623730, players:"4万" },
+  { name:"Rust", cat:"survival", price:"¥98", free:false, rating:4.2, hot:true, tags:["生存","PvP","建造"], emoji:"🔨", discount:null, appId:252490, players:"6万" },
+  { name:"7 Days to Die", cat:"survival", price:"¥70", free:false, rating:4.1, hot:false, tags:["生存","僵尸","建造"], emoji:"🧟", discount:"-33%", appId:251570, players:"1.5万" },
+  { name:"Subnautica", cat:"survival", price:"¥70", free:false, rating:4.7, hot:false, tags:["生存","探索","水下"], emoji:"🐠", discount:null, appId:264710, players:"0.8万" },
+  { name:"The Forest", cat:"survival", price:"¥37", free:false, rating:4.5, hot:false, tags:["生存","恐怖","建造"], emoji:"🌲", discount:null, appId:242760, players:"0.6万" },
+  { name:"Valheim", cat:"survival", price:"¥49", free:false, rating:4.6, hot:false, tags:["生存","维京","建造"], emoji:"⚓", discount:null, appId:892970, players:"1万" },
+  { name:"Civilization VII", cat:"strategy", price:"¥298", free:false, rating:4.0, hot:true, tags:["策略","4X","回合制"], emoji:"🏛️", discount:null, appId:1295660, players:"2万" },
+  { name:"Age of Empires IV", cat:"strategy", price:"¥99", free:false, rating:4.3, hot:false, tags:["策略","RTS","历史"], emoji:"⚔️", discount:"-50%", appId:1466860, players:"1万" },
+  { name:"Total War: Warhammer III", cat:"strategy", price:"¥188", free:false, rating:4.4, hot:false, tags:["策略","RTS","奇幻"], emoji:"🧙", discount:"-50%", appId:1142710, players:"1.5万" },
+  { name:"Hearts of Iron IV", cat:"strategy", price:"¥70", free:false, rating:4.6, hot:false, tags:["策略","二战","大战略"], emoji:"🌍", discount:null, appId:394360, players:"2万" },
+  { name:"Stellaris", cat:"strategy", price:"¥70", free:false, rating:4.5, hot:false, tags:["策略","4X","太空"], emoji:"🚀", discount:null, appId:281990, players:"1万" },
+  { name:"Forza Horizon 5", cat:"racing", price:"¥248", free:false, rating:4.7, hot:true, tags:["竞速","开放世界","拟真"], emoji:"🏎️", discount:"-50%", appId:1551360, players:"2万" },
+  { name:"Need for Speed Unbound", cat:"racing", price:"¥149", free:false, rating:3.9, hot:false, tags:["竞速","街头","改装"], emoji:"🏁", discount:"-60%", appId:1845420, players:"0.5万" },
+  { name:"Assetto Corsa", cat:"racing", price:"¥35", free:false, rating:4.5, hot:false, tags:["竞速","拟真","MOD"], emoji:"🏁", discount:null, appId:244210, players:"0.8万" },
+  { name:"EA FC 25", cat:"sports", price:"¥248", free:false, rating:3.7, hot:true, tags:["体育","足球","模拟"], emoji:"⚽", discount:"-40%", appId:2669320, players:"1万" },
+  { name:"NBA 2K25", cat:"sports", price:"¥298", free:false, rating:3.8, hot:false, tags:["体育","篮球","模拟"], emoji:"🏀", discount:"-50%", appId:2348520, players:"0.5万" },
+  { name:"Minecraft", cat:"sandbox", price:"¥89", free:false, rating:4.8, hot:true, tags:["沙盒","建造","生存"], emoji:"🧱", discount:null, appId:null, players:"15万" },
+  { name:"Terraria", cat:"sandbox", price:"¥22", free:false, rating:4.9, hot:true, tags:["沙盒","冒险","2D"], emoji:"🌳", discount:"-50%", appId:105600, players:"3万" },
+  { name:"Stardew Valley", cat:"sandbox", price:"¥31", free:false, rating:4.9, hot:false, tags:["沙盒","农场","模拟"], emoji:"🌾", discount:null, appId:413150, players:"1.5万" },
+  { name:"Factorio", cat:"sandbox", price:"¥105", free:false, rating:4.9, hot:false, tags:["沙盒","工厂","自动化"], emoji:"⚙️", discount:null, appId:427520, players:"1万" },
+  { name:"Lethal Company", cat:"horror", price:"¥30", free:false, rating:4.7, hot:true, tags:["恐怖","合作","外星"], emoji:"👽", discount:null, appId:1966720, players:"3万" },
+  { name:"Phasmophobia", cat:"horror", price:"¥36", free:false, rating:4.5, hot:false, tags:["恐怖","合作","捉鬼"], emoji:"👻", discount:null, appId:739630, players:"1万" },
+  { name:"Resident Evil 4", cat:"horror", price:"¥199", free:false, rating:4.7, hot:false, tags:["恐怖","动作","重制"], emoji:"🧟", discount:"-50%", appId:2050650, players:"1.5万" },
+  { name:"Amnesia: The Bunker", cat:"horror", price:"¥70", free:false, rating:4.2, hot:false, tags:["恐怖","解谜","一战"], emoji:"🔦", discount:"-40%", appId:1944430, players:"0.3万" },
+];
+
+let currentCat = 'all';
+
+function getHeaderUrl(appId) {
+  if (!appId) return null;
+  return `img/${appId}.jpg`;
+}
+
+function getStoreUrl(appId, name) {
+  if (appId) return `https://store.steampowered.com/app/${appId}`;
+  return `https://store.steampowered.com/search/?term=${encodeURIComponent(name)}`;
+}
+
+function createCard(game) {
+  const hotBadge = game.hot ? '<span class="hot-badge">🔥 HOT</span>' : '';
+  const discountBadge = game.discount ? `<span class="discount-badge">${game.discount}</span>` : '';
+  const tagsHtml = game.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  const stars = '★'.repeat(Math.round(game.rating)) + '☆'.repeat(5 - Math.round(game.rating));
+  const priceClass = game.free ? 'price free' : 'price';
+  const headerUrl = getHeaderUrl(game.appId);
+
+  let coverHtml;
+  if (headerUrl) {
+    coverHtml = `
+      <div class="cover-wrap">
+        <div class="img-placeholder" id="ph_${game.appId}">${game.emoji}</div>
+        <img class="cover" src="${headerUrl}" alt="${game.name}" loading="lazy"
+          onload="document.getElementById('ph_${game.appId}').classList.add('hidden')"
+          onerror="this.style.display='none'">
+      </div>`;
+  } else {
+    coverHtml = `<div class="cover-wrap"><div class="img-placeholder">${game.emoji}</div></div>`;
+  }
+
+  return `
+    <div class="game-card" data-cat="${game.cat}" data-name="${game.name.toLowerCase()}"
+         onclick="window.open('${getStoreUrl(game.appId, game.name)}', '_blank')">
+      ${hotBadge}${discountBadge}
+      ${coverHtml}
+      <div class="info">
+        <h3>${game.name}</h3>
+        <div class="meta">
+          <span class="${priceClass}">${game.price}</span>
+          <span class="rating"><span>${stars}</span> ${game.rating}</span>
+        </div>
+        <div class="tags">${tagsHtml}</div>
+      </div>
+    </div>`;
+}
+
+function createRankItem(game, idx) {
+  const numClass = idx === 0 ? 'rank-num top1' : idx === 1 ? 'rank-num top2' : idx === 2 ? 'rank-num top3' : 'rank-num';
+  const thumb = game.appId
+    ? `<img class="rank-thumb" src="img/${game.appId}.jpg" alt="${game.name}" loading="lazy" onerror="this.style.display='none'">`
+    : `<div class="rank-thumb" style="display:flex;align-items:center;justify-content:center;font-size:16px">${game.emoji}</div>`;
+
+  return `
+    <div class="rank-item" onclick="window.open('${getStoreUrl(game.appId, game.name)}', '_blank')">
+      <span class="${numClass}">${idx + 1}</span>
+      <div class="rank-info">
+        <div class="name">${game.name}</div>
+        <div class="players">${game.players} 在线</div>
+      </div>
+      ${thumb}
+    </div>`;
+}
+
+function renderGames() {
+  const search = document.getElementById('searchInput').value.toLowerCase().trim();
+  const filter = g => {
+    const catOk = currentCat === 'all' || g.cat === currentCat;
+    const searchOk = !search || g.name.toLowerCase().includes(search) || g.tags.some(t => t.toLowerCase().includes(search));
+    return catOk && searchOk;
+  };
+
+  const hot = GAMES.filter(g => filter(g) && g.hot);
+  const newG = GAMES.filter(g => filter(g) && !g.hot && !g.free).slice(0, 8);
+  const free = GAMES.filter(g => filter(g) && g.free);
+  const emptyMsg = '<p style="color:var(--text-secondary);grid-column:1/-1;text-align:center;padding:32px">暂无匹配结果</p>';
+
+  document.getElementById('hotGames').innerHTML = hot.length ? hot.map(createCard).join('') : emptyMsg;
+  document.getElementById('newGames').innerHTML = newG.length ? newG.map(createCard).join('') : emptyMsg;
+  document.getElementById('freeGames').innerHTML = free.length ? free.map(createCard).join('') : emptyMsg;
+
+  // 侧栏排行
+  const byPlayers = [...GAMES].sort((a, b) => parseFloat(b.players) - parseFloat(a.players)).slice(0, 8);
+  document.getElementById('rankList').innerHTML = byPlayers.map((g, i) => createRankItem(g, i)).join('');
+
+  const byRating = [...GAMES].sort((a, b) => b.rating - a.rating).slice(0, 8);
+  document.getElementById('ratingList').innerHTML = byRating.map((g, i) => createRankItem(g, i)).join('');
+
+  document.getElementById('totalCount').textContent = GAMES.length;
+  document.getElementById('onlineCount').textContent = (2800 + Math.floor(Math.random() * 400));
+}
+
+function setCategory(btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat = btn.dataset.cat;
+  renderGames();
+}
+
+function filterGames() { renderGames(); }
+
+function acceptCookies() {
+  document.getElementById('cookieBar').classList.add('hidden');
+  localStorage.setItem('cookies_accepted', 'true');
+  // 启用广告追踪
+  if (typeof gtag === 'function') {
+    gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted' });
+  }
+}
+
+// 初始化
+if (localStorage.getItem('cookies_accepted') === 'true') {
+  document.getElementById('cookieBar').classList.add('hidden');
+}
+
+renderGames();
+</script>
+
+</body>
+</html>
