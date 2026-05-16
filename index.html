@@ -7,8 +7,8 @@
 <meta name="description" content="Steam热门端游导航站，收录外网最火PC游戏，FPS/MOBA/RPG/生存/策略一网打尽">
 <meta name="keywords" content="Steam,热门游戏,端游导航,PC游戏,FPS,MOBA,RPG,免费游戏">
 
-<!-- Google AdSense (替换 ca-pub-XXXXXXXXXXXXXXXX 为你的发布商ID) -->
-<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+<!-- Google AdSense (请将 ca-pub-XXXXXXXXXXXXXXXX 替换为你的发布商ID，申请地址: https://www.google.com/adsense) -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
@@ -276,6 +276,41 @@
     padding: 3px 8px; border-radius: 4px; z-index: 2;
   }
 
+  /* ===== 比价按钮 ===== */
+  .game-card .card-actions {
+    display: flex; gap: 6px; margin-top: 8px;
+  }
+
+  .game-card .card-actions .steam-btn {
+    flex: 1; padding: 5px 6px;
+    background: rgba(102,192,244,0.15);
+    border: 1px solid rgba(102,192,244,0.25);
+    border-radius: 6px; color: var(--accent-blue);
+    font-size: 10px; font-weight: 700; text-align: center;
+    text-decoration: none; transition: all 0.2s; cursor: pointer;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .game-card .card-actions .steam-btn:hover {
+    background: rgba(102,192,244,0.25);
+    border-color: var(--accent-blue);
+  }
+
+  .game-card .card-actions .compare-btn {
+    flex: 1; padding: 5px 6px;
+    background: rgba(76,175,80,0.12);
+    border: 1px solid rgba(76,175,80,0.2);
+    border-radius: 6px; color: var(--accent-green);
+    font-size: 10px; font-weight: 700; text-align: center;
+    text-decoration: none; transition: all 0.2s; cursor: pointer;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .game-card .card-actions .compare-btn:hover {
+    background: rgba(76,175,80,0.22);
+    border-color: var(--accent-green);
+  }
+
   /* ===== 广告位系统 ===== */
   .ad-slot {
     border-radius: 12px;
@@ -286,8 +321,8 @@
 
   /* 顶部横幅广告 */
   .ad-slot-top {
-    background: linear-gradient(135deg, #1a1a3e, #0d1b2a);
-    border: 1px dashed var(--border-color);
+    background: linear-gradient(135deg, #0f1923 0%, #1a1040 50%, #0d1b2a 100%);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 28px 24px;
     margin-bottom: 20px;
@@ -299,7 +334,7 @@
     content: '';
     position: absolute; top: -50%; left: -50%;
     width: 200%; height: 200%;
-    background: conic-gradient(transparent, rgba(102,192,244,0.05), transparent, rgba(156,39,176,0.05), transparent);
+    background: conic-gradient(transparent, rgba(102,192,244,0.04), transparent, rgba(156,39,176,0.04), transparent);
     animation: rotate-bg 20s linear infinite;
   }
 
@@ -334,6 +369,12 @@
     transform: scale(1.05);
     box-shadow: 0 4px 20px rgba(102,192,244,0.3);
   }
+
+  .ad-slot-top .ad-contact {
+    margin-top: 14px; font-size: 12px; color: var(--text-secondary);
+  }
+
+  .ad-slot-top .ad-contact a { color: var(--accent-blue); text-decoration: none; }
 
   /* 中部内容广告 */
   .ad-slot-mid {
@@ -435,6 +476,72 @@
     background: #1a1a2e;
   }
 
+  /* ===== 低价Key链接 ===== */
+  .keyshop-list { display: flex; flex-direction: column; gap: 6px; }
+
+  .keyshop-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none; color: var(--text-primary);
+    transition: all 0.2s; font-size: 12px;
+  }
+
+  .keyshop-item:hover {
+    border-color: var(--accent-green);
+    background: rgba(76,175,80,0.08);
+    color: var(--accent-green);
+    transform: translateX(3px);
+  }
+
+  .keyshop-item .shop-name { font-weight: 700; font-size: 13px; }
+  .keyshop-item .shop-tag { font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
+
+  .keyshop-item .shop-badge {
+    font-size: 10px; padding: 2px 8px;
+    border-radius: 10px; font-weight: 700;
+    background: rgba(76,175,80,0.15);
+    color: var(--accent-green);
+    border: 1px solid rgba(76,175,80,0.2);
+    white-space: nowrap;
+  }
+
+  /* ===== 游戏装备推荐 ===== */
+  .gear-grid { display: flex; flex-direction: column; gap: 10px; }
+
+  .gear-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none; color: var(--text-primary);
+    transition: all 0.2s;
+  }
+
+  .gear-item:hover {
+    border-color: var(--accent-orange);
+    background: rgba(255,152,0,0.06);
+    transform: translateY(-1px);
+  }
+
+  .gear-item .gear-img {
+    width: 48px; height: 48px;
+    border-radius: 6px; object-fit: cover;
+    background: #1a1a2e;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+
+  .gear-item .gear-info { flex: 1; min-width: 0; }
+  .gear-item .gear-name { font-size: 11px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gear-item .gear-price { font-size: 11px; color: var(--accent-orange); margin-top: 2px; }
+  .gear-item .gear-tag { font-size: 10px; padding: 1px 6px; border-radius: 6px; background: rgba(255,152,0,0.12); color: var(--accent-orange); display: inline-block; margin-top: 3px; }
+
+  .gear-item .gear-arrow { color: var(--text-secondary); font-size: 14px; }
+
   /* ===== 分区标题 ===== */
   .section-title {
     display: flex; align-items: center;
@@ -493,6 +600,9 @@
 
   .cookie-bar.hidden { display: none; }
 
+  /* ===== AdSense样式 ===== */
+  ins.adsbygoogle { display: block !important; }
+
   ::-webkit-scrollbar { width: 8px; }
   ::-webkit-scrollbar-track { background: var(--bg-dark); }
   ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
@@ -534,13 +644,14 @@
     </div>
   </header>
 
-  <!-- 顶部横幅广告 -->
+  <!-- 顶部横幅广告位 (AdSense 728x90 或自定义) -->
   <div class="ad-slot ad-slot-top" id="ad-top-banner">
     <div class="ad-content">
       <div class="ad-label">— ADVERTISEMENT —</div>
-      <div class="ad-title">🎮 游戏加速器限时特惠</div>
-      <div class="ad-desc">低延迟畅玩Steam外服 · 全球节点智能加速 · 新用户免费体验3天</div>
-      <button class="ad-cta" onclick="alert('广告位联系：ad@steamnav.com')">立即领取</button>
+      <div class="ad-title">🎮 您的品牌 · 我们的玩家</div>
+      <div class="ad-desc">SteamNav 每月服务数十万游戏玩家 · 游戏加速器 / 硬件 / Key shop 广告位招商中</div>
+      <button class="ad-cta" onclick="window.open('mailto:ad@steamnav.com?subject=SteamNav广告合作','_blank')">立即洽谈</button>
+      <div class="ad-contact">或邮件联系：<a href="mailto:ad@steamnav.com">ad@steamnav.com</a></div>
     </div>
   </div>
 
@@ -568,9 +679,8 @@
 
       <!-- 中部广告位 -->
       <div class="ad-slot ad-slot-mid" id="ad-mid-content">
-        <!-- Google AdSense 横幅广告位 (728x90) -->
-        <!-- <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins> -->
-        <!-- <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+        <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <span class="ad-label">AD SPACE · 728×90</span>
       </div>
 
@@ -584,9 +694,8 @@
 
       <!-- 底部广告位 -->
       <div class="ad-slot ad-slot-bottom" id="ad-bottom-banner">
-        <!-- Google AdSense 横幅广告位 (728x90) -->
-        <!-- <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins> -->
-        <!-- <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+        <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <span class="ad-label">AD SPACE · 728×90</span>
       </div>
     </div>
@@ -595,10 +704,44 @@
     <aside class="sidebar">
       <!-- 侧栏广告位 1 -->
       <div class="ad-slot ad-slot-side" id="ad-side-1">
-        <!-- Google AdSense 侧栏广告 (300x250) -->
-        <!-- <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins> -->
-        <!-- <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <span class="ad-label">AD SPACE · 300×250</span>
+      </div>
+
+      <!-- 低价Key -->
+      <div class="sidebar-section">
+        <h4>💎 低价购买Key</h4>
+        <div class="keyshop-list">
+          <a class="keyshop-item" href="https://www.greenmangaming.com/?utm_source=steamnav&utm_medium=affiliate" target="_blank" rel="noopener">
+            <div>
+              <div class="shop-name">GreenManGaming</div>
+              <div class="shop-tag">全球连锁·支持支付宝</div>
+            </div>
+            <div class="shop-badge">至高5%返现</div>
+          </a>
+          <a class="keyshop-item" href="https://www.fanatical.com/?aff=STEAMNAV&utm_source=steamnav" target="_blank" rel="noopener">
+            <div>
+              <div class="shop-name">Fanatical</div>
+              <div class="shop-tag">日更捆绑包·骨折价</div>
+            </div>
+            <div class="shop-badge">折扣高达95%</div>
+          </a>
+          <a class="keyshop-item" href="https://www.humblebundle.com/?partner=steamnav" target="_blank" rel="noopener">
+            <div>
+              <div class="shop-name">Humble Bundle</div>
+              <div class="shop-tag">慈善包始祖·品质保证</div>
+            </div>
+            <div class="shop-badge">月包$12起</div>
+          </a>
+          <a class="keyshop-item" href="https://www.cheapshark.com/redirect?partner=steamnav" target="_blank" rel="noopener">
+            <div>
+              <div class="shop-name">CheapShark 比价</div>
+              <div class="shop-tag">一键全网最低价查询</div>
+            </div>
+            <div class="shop-badge">免费比价</div>
+          </a>
+        </div>
       </div>
 
       <!-- 人气排行 -->
@@ -609,7 +752,44 @@
 
       <!-- 侧栏广告位 2 -->
       <div class="ad-slot ad-slot-side" id="ad-side-2">
+        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <span class="ad-label">AD SPACE · 300×250</span>
+      </div>
+
+      <!-- 游戏装备推荐 (Amazon Affiliate) -->
+      <div class="sidebar-section">
+        <h4>🎧 游戏装备推荐</h4>
+        <div class="gear-grid">
+          <a class="gear-item" href="https://www.amazon.com/s?k=gaming+headset&tag=STEAMNAV_PLACEHOLDER" target="_blank" rel="noopener">
+            <div class="gear-img">🎧</div>
+            <div class="gear-info">
+              <div class="gear-name">游戏耳机推荐榜</div>
+              <div class="gear-price">$30-$200 全价位</div>
+              <div class="gear-tag">Amazon精选</div>
+            </div>
+            <div class="gear-arrow">→</div>
+          </a>
+          <a class="gear-item" href="https://www.amazon.com/s?k=gaming+mouse&tag=STEAMNAV_PLACEHOLDER" target="_blank" rel="noopener">
+            <div class="gear-img">🖱️</div>
+            <div class="gear-info">
+              <div class="gear-name">电竞鼠标推荐榜</div>
+              <div class="gear-price">$30-$150 全价位</div>
+              <div class="gear-tag">Amazon精选</div>
+            </div>
+            <div class="gear-arrow">→</div>
+          </a>
+          <a class="gear-item" href="https://www.amazon.com/s?k=mechanical+keyboard&tag=STEAMNAV_PLACEHOLDER" target="_blank" rel="noopener">
+            <div class="gear-img">⌨️</div>
+            <div class="gear-info">
+              <div class="gear-name">机械键盘推荐榜</div>
+              <div class="gear-price">$50-$300 全价位</div>
+              <div class="gear-tag">Amazon精选</div>
+            </div>
+            <div class="gear-arrow">→</div>
+          </a>
+        </div>
+        <p style="font-size:10px;color:var(--text-secondary);margin-top:8px;">* 通过Amazon链接购物可获佣金支持本站运营 · <a href="https://www.amazon.com" target="_blank" style="color:var(--accent-blue)">前往Amazon</a></p>
       </div>
 
       <!-- 好评排行 -->
@@ -620,7 +800,9 @@
 
       <!-- 侧栏广告位 3 -->
       <div class="ad-slot ad-slot-side" id="ad-side-3">
-        <span class="ad-label">AD SPACE · 300×250</span>
+        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <span class="ad-label">AD SPACE · 300×600</span>
       </div>
     </aside>
   </div>
@@ -631,19 +813,19 @@
       <a href="https://store.steampowered.com" target="_blank">Steam 官网</a> ·
       <a href="https://steamdb.info" target="_blank">SteamDB</a> ·
       <a href="https://steamcommunity.com" target="_blank">Steam 社区</a> ·
-      <a href="mailto:ad@steamnav.com">广告合作</a>
+      <a href="mailto:ad@steamnav.com" style="color:var(--accent-orange);font-weight:700;">📢 广告合作</a>
     </p>
     <p style="margin-top:8px;font-size:11px;">
       <a href="/privacy.html">隐私政策</a> ·
       <a href="/terms.html">使用条款</a>
     </p>
-    <p style="margin-top:12px;font-size:11px;color:#555;">© 2026 SteamNav. 本站非 Valve 官方产品，仅供导航参考。</p>
+    <p style="margin-top:12px;font-size:11px;color:#555;">© 2026 SteamNav. 本站在线服务不代表 Valve 公司立场。</p>
   </footer>
 </div>
 
 <!-- Cookie 同意栏（AdSense 要求） -->
 <div class="cookie-bar" id="cookieBar">
-  <p>🍪 本站使用 Cookie 提供更好的浏览体验并展示个性化广告，继续浏览即表示同意。</p>
+  <p>🍪 本站展示广告，部分来自 Google AdSense，继续浏览即表示同意我们的 Cookie 使用政策。</p>
   <button class="cookie-accept" onclick="acceptCookies()">同意</button>
 </div>
 
@@ -708,6 +890,10 @@ function getStoreUrl(appId, name) {
   return `https://store.steampowered.com/search/?term=${encodeURIComponent(name)}`;
 }
 
+function getCompareUrl(name) {
+  return `https://www.cheapshark.com/search?q=${encodeURIComponent(name)}`;
+}
+
 function createCard(game) {
   const hotBadge = game.hot ? '<span class="hot-badge">🔥 HOT</span>' : '';
   const discountBadge = game.discount ? `<span class="discount-badge">${game.discount}</span>` : '';
@@ -729,9 +915,11 @@ function createCard(game) {
     coverHtml = `<div class="cover-wrap"><div class="img-placeholder">${game.emoji}</div></div>`;
   }
 
+  const steamUrl = getStoreUrl(game.appId, game.name);
+  const compareUrl = getCompareUrl(game.name);
+
   return `
-    <div class="game-card" data-cat="${game.cat}" data-name="${game.name.toLowerCase()}"
-         onclick="window.open('${getStoreUrl(game.appId, game.name)}', '_blank')">
+    <div class="game-card" data-cat="${game.cat}" data-name="${game.name.toLowerCase()}">
       ${hotBadge}${discountBadge}
       ${coverHtml}
       <div class="info">
@@ -741,6 +929,10 @@ function createCard(game) {
           <span class="rating"><span>${stars}</span> ${game.rating}</span>
         </div>
         <div class="tags">${tagsHtml}</div>
+        <div class="card-actions">
+          <a class="steam-btn" href="${steamUrl}" target="_blank" onclick="event.stopPropagation()">🚀 Steam</a>
+          <a class="compare-btn" href="${compareUrl}" target="_blank" onclick="event.stopPropagation()">💎 比价</a>
+        </div>
       </div>
     </div>`;
 }
@@ -802,7 +994,7 @@ function filterGames() { renderGames(); }
 function acceptCookies() {
   document.getElementById('cookieBar').classList.add('hidden');
   localStorage.setItem('cookies_accepted', 'true');
-  // 启用广告追踪
+  // 启用 AdSense 广告追踪
   if (typeof gtag === 'function') {
     gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted' });
   }
