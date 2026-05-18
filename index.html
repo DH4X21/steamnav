@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -322,7 +321,45 @@ const GAMES = [
   { name:"Lethal Company", cat:"horror", price:"¥30", free:false, rating:4.7, hot:true, tags:["恐怖","合作","外星"], emoji:"👽", discount:null, appId:1966720, players:"3万" },
   { name:"Phasmophobia", cat:"horror", price:"¥36", free:false, rating:4.5, hot:false, tags:["恐怖","合作","捉鬼"], emoji:"👻", discount:null, appId:739630, players:"1万" },
   { name:"Resident Evil 4", cat:"horror", price:"¥199", free:false, rating:4.7, hot:false, tags:["恐怖","动作","重制"], emoji:"🧟", discount:"-50%", appId:2050650, players:"1.5万" },
-  { name:"Amnesia: The Bunker", cat:"horror", price:"¥70", free:false, rating:4.2, hot:false, tags:["恐怖","解谜","一战"], emoji:"🔦", discount:"-40%", appId:1944430, players:"0.3万" },
+  { name:"Amnesia: The Bunker", cat:"horror", price:"¥70", free:false, rating:4.2, hot:false, tags:["恐怖","解谜","一战"], emoji:"🔦", discount:"-40%", appId:1944430, players:"0.3万" },,
+  { name:"Hollow Knight", cat:"rpg", price:"¥58", free:false, rating:4.9, hot:false, tags:["RPG","动作","独立"], emoji:"🐛", discount:null, appId:367520, players:"15K" },
+  { name:"Hades", cat:"rpg", price:"¥92", free:false, rating:4.9, hot:true, tags:["RPG","动作","Roguelike"], emoji:"🔥", discount:null, appId:1145360, players:"20K" },
+  { name:"Celeste", cat:"rpg", price:"¥68", free:false, rating:4.9, hot:false, tags:["平台","独立","剧情"], emoji:"🏔️", discount:null, appId:504230, players:"8K" },
+  { name:"Undertale", cat:"rpg", price:"¥36", free:false, rating:4.9, hot:false, tags:["RPG","独立","剧情"], emoji:"💀", discount:null, appId:391540, players:"12K" },
+  { name:"No Man's Sky", cat:"survival", price:"¥175", free:false, rating:4.2, hot:false, tags:["生存","探索","太空"], emoji:"🚀", discount:null, appId:275850, players:"10K" },
+  { name:"ARK: Survival Evolved", cat:"survival", price:"¥90", free:false, rating:4.0, hot:false, tags:["生存","恐龙","多人"], emoji:"🦕", discount:null, appId:346110, players:"35K" },
+  { name:"DayZ", cat:"survival", price:"¥199", free:false, rating:4.0, hot:false, tags:["生存","僵尸","硬核"], emoji:"🩸", discount:null, appId:221100, players:"20K" },
+  { name:"Squad", cat:"fps", price:"¥149", free:false, rating:4.5, hot:false, tags:["FPS","战术","军事"], emoji:"🎖️", discount:null, appId:393380, players:"8K" },
+  { name:"Hell Let Loose", cat:"fps", price:"¥168", free:false, rating:4.4, hot:false, tags:["FPS","二战","战术"], emoji:"💣", discount:null, appId:686810, players:"12K" },
+  { name:"War Thunder", cat:"fps", price:"免费", free:true, rating:4.1, hot:false, tags:["FPS","载具","免费"], emoji:"✈️", discount:null, appId:236390, players:"45K" },
+  { name:"Vampire Survivors", cat:"rpg", price:"¥20", free:false, rating:4.8, hot:false, tags:["Roguelike","动作","独立"], emoji:"🧛", discount:null, appId:1794680, players:"20K" },
+  { name:"Balatro", cat:"strategy", price:"¥54", free:false, rating:4.9, hot:true, tags:["策略","卡牌","独立"], emoji:"🃏", discount:null, appId:2379780, players:"25K" },
+  { name:"Dave the Diver", cat:"rpg", price:"¥80", free:false, rating:4.8, hot:true, tags:["RPG","经营","冒险"], emoji:"🤿", discount:null, appId:1868140, players:"15K" },
+  { name:"Among Us", cat:"strategy", price:"¥22", free:false, rating:4.3, hot:false, tags:["策略","社交","多人"], emoji:"🔪", discount:null, appId:945360, players:"15K" },
+  { name:"Fall Guys", cat:"sports", price:"免费", free:true, rating:4.2, hot:false, tags:["体育","休闲","多人"], emoji:"🫘", discount:null, appId:1097150, players:"20K" },
+  { name:"Rocket League", cat:"sports", price:"免费", free:true, rating:4.7, hot:false, tags:["体育","赛车","竞技"], emoji:"🚗", discount:null, appId:252950, players:"35K" },
+  { name:"Euro Truck Simulator 2", cat:"racing", price:"¥88", free:false, rating:4.9, hot:false, tags:["竞速","模拟","休闲"], emoji:"🚛", discount:null, appId:227300, players:"20K" },
+  { name:"Cities: Skylines II", cat:"strategy", price:"¥218", free:false, rating:4.0, hot:false, tags:["策略","模拟","建造"], emoji:"🏙️", discount:null, appId:949230, players:"15K" },
+  { name:"Planet Coaster", cat:"strategy", price:"¥122", free:false, rating:4.7, hot:false, tags:["策略","模拟","建造"], emoji:"🎢", discount:null, appId:493340, players:"8K" },
+  { name:"Planet Zoo", cat:"strategy", price:"¥180", free:false, rating:4.6, hot:false, tags:["策略","模拟","动物"], emoji:"🦁", discount:null, appId:703080, players:"10K" },
+  { name:"Don't Starve Together", cat:"survival", price:"¥24", free:false, rating:4.8, hot:false, tags:["生存","合作","独立"], emoji:"🎩", discount:null, appId:322330, players:"25K" },
+  { name:"Green Hell", cat:"survival", price:"¥80", free:false, rating:4.5, hot:false, tags:["生存","硬核","恐怖"], emoji:"🌿", discount:null, appId:815370, players:"8K" },
+  { name:"The Long Dark", cat:"survival", price:"¥108", free:false, rating:4.7, hot:false, tags:["生存","剧情","独立"], emoji:"❄️", discount:null, appId:305620, players:"10K" },
+  { name:"Raft", cat:"survival", price:"¥76", free:false, rating:4.6, hot:false, tags:["生存","合作","建造"], emoji:"🛟", discount:null, appId:648800, players:"20K" },
+  { name:"Core Keeper", cat:"survival", price:"¥58", free:false, rating:4.4, hot:false, tags:["生存","挖矿","多人"], emoji:"⛏️", discount:null, appId:1621690, players:"12K" },
+  { name:"V Rising", cat:"survival", price:"¥108", free:false, rating:4.3, hot:false, tags:["生存","吸血鬼","PvP"], emoji:"🧛", discount:null, appId:1604030, players:"15K" },
+  { name:"Last Epoch", cat:"rpg", price:"¥128", free:false, rating:4.4, hot:false, tags:["RPG","ARPG","刷宝"], emoji:"⚔️", discount:null, appId:899770, players:"20K" },
+  { name:"Grim Dawn", cat:"rpg", price:"¥78", free:false, rating:4.8, hot:false, tags:["RPG","ARPG","刷宝"], emoji:"💀", discount:null, appId:219990, players:"8K" },
+  { name:"Risk of Rain 2", cat:"rpg", price:"¥80", free:false, rating:4.8, hot:false, tags:["RPG","Roguelike","射击"], emoji:"🌧️", discount:null, appId:632360, players:"15K" },
+  { name:"Deep Rock Galactic", cat:"fps", price:"¥90", free:false, rating:4.9, hot:true, tags:["FPS","合作","挖矿"], emoji:"⛏️", discount:null, appId:548430, players:"20K" },
+  { name:"Satisfactory", cat:"strategy", price:"¥99", free:false, rating:4.9, hot:true, tags:["策略","自动化","建造"], emoji:"🏭", discount:null, appId:526870, players:"25K" },
+  { name:"Dyson Sphere Program", cat:"strategy", price:"¥70", free:false, rating:4.9, hot:false, tags:["策略","自动化","太空"], emoji:"🌌", discount:null, appId:1366540, players:"15K" },
+  { name:"Crusader Kings III", cat:"strategy", price:"¥218", free:false, rating:4.7, hot:false, tags:["策略","大战略","角色扮演"], emoji:"👑", discount:null, appId:1158310, players:"15K" },
+  { name:"Frostpunk 2", cat:"strategy", price:"¥149", free:false, rating:4.2, hot:false, tags:["策略","生存","末日"], emoji:"❄️", discount:null, appId:1601580, players:"10K" },
+  { name:"Slay the Spire", cat:"rpg", price:"¥80", free:false, rating:4.9, hot:false, tags:["RPG","卡牌","Roguelike"], emoji:"🗼", discount:null, appId:646570, players:"20K" },
+  { name:"Monster Train", cat:"rpg", price:"¥80", free:false, rating:4.7, hot:false, tags:["RPG","卡牌","Roguelike"], emoji:"🚂", discount:null, appId:1102190, players:"5K" },
+  { name:"Into the Breach", cat:"strategy", price:"¥58", free:false, rating:4.8, hot:false, tags:["策略","战棋","独立"], emoji:"🤖", discount:null, appId:590380, players:"5K" },
+  { name:"FTL: Faster Than Light", cat:"strategy", price:"¥40", free:false, rating:4.8, hot:false, tags:["策略","Roguelike","太空"], emoji:"🚀", discount:null, appId:212680, players:"8K" },
 ];
 
 let currentCat = 'all';
