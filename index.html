@@ -1103,7 +1103,12 @@ if (localStorage.getItem('cookies_accepted') === 'true') {
   document.getElementById('cookieBar').classList.add('hidden');
 }
 
-renderGames();
+try {
+  renderGames();
+} catch(e) {
+  console.error('Render error:', e.message);
+  document.getElementById('hotGames').innerHTML = '<p style="color:red;padding:20px">Error: ' + e.message + '</p>';
+}
 </script>
 
 
