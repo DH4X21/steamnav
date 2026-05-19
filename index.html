@@ -1106,18 +1106,12 @@ if (localStorage.getItem('cookies_accepted') === 'true') {
   document.getElementById('cookieBar').classList.add('hidden');
 }
 
-// Debug: show execution status
-document.getElementById('hotGames').innerHTML = '<p style="color:blue;padding:20px">JS Loading...</p>';
-
-// Simplified test - just show first game
-setTimeout(function() {
-  try {
-    var firstGame = GAMES[0];
-    document.getElementById('hotGames').innerHTML = '<p style="color:green;padding:20px">JS OK! First game: ' + firstGame.name + '</p>';
-  } catch(e) {
-    document.getElementById('hotGames').innerHTML = '<p style="color:red;padding:20px">Error: ' + (e.message || e.toString()) + '</p>';
-  }
-}, 100);
+// 页面加载完成后渲染游戏
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderGames);
+} else {
+  renderGames();
+}
 </script>
 
 
