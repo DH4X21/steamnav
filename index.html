@@ -1106,6 +1106,9 @@ if (localStorage.getItem('cookies_accepted') === 'true') {
   document.getElementById('cookieBar').classList.add('hidden');
 }
 
+// Debug: show execution status
+document.getElementById('hotGames').innerHTML = '<p style="color:blue;padding:20px">JS Loading...</p>';
+
 // Debug: show any errors directly in the page
 try {
   renderGames();
