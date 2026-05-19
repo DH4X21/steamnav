@@ -1109,16 +1109,15 @@ if (localStorage.getItem('cookies_accepted') === 'true') {
 // Debug: show execution status
 document.getElementById('hotGames').innerHTML = '<p style="color:blue;padding:20px">JS Loading...</p>';
 
-// Debug: show any errors directly in the page
-try {
-  renderGames();
-} catch(e) {
-  var errMsg = 'Error: ' + (e.message || e.toString() || 'Unknown error');
-  var errStack = e.stack || 'No stack trace';
-  document.getElementById('hotGames').innerHTML = '<div style="color:red;padding:20px;background:#300;border:2px solid red;margin:20px"><h3>JavaScript Error</h3><p>' + errMsg + '</p><pre>' + errStack + '</pre></div>';
-  document.getElementById('newGames').innerHTML = '<p style="color:red;padding:20px">' + errMsg + '</p>';
-  document.getElementById('freeGames').innerHTML = '<p style="color:red;padding:20px">' + errMsg + '</p>';
-}
+// Simplified test - just show first game
+setTimeout(function() {
+  try {
+    var firstGame = GAMES[0];
+    document.getElementById('hotGames').innerHTML = '<p style="color:green;padding:20px">JS OK! First game: ' + firstGame.name + '</p>';
+  } catch(e) {
+    document.getElementById('hotGames').innerHTML = '<p style="color:red;padding:20px">Error: ' + (e.message || e.toString()) + '</p>';
+  }
+}, 100);
 </script>
 
 
