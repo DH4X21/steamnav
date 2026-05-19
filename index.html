@@ -1045,6 +1045,7 @@ function createRankItem(game, idx) {
 }
 
 function renderGames() {
+  console.log('renderGames called');
   const search = document.getElementById('searchInput').value.toLowerCase().trim();
   const filter = g => {
     const catOk = currentCat === 'all' || g.cat === currentCat;
@@ -1053,10 +1054,12 @@ function renderGames() {
   };
 
   const hot = GAMES.filter(g => filter(g) && g.hot);
+  console.log('Hot games:', hot.length);
   const newG = GAMES.filter(g => filter(g) && !g.hot && !g.free).slice(0, 8);
   const free = GAMES.filter(g => filter(g) && g.free);
   const emptyMsg = '<p style="color:var(--text-secondary);grid-column:1/-1;text-align:center;padding:32px">暂无匹配结果</p>';
 
+  console.log('Setting hotGames, count:', hot.length);
   document.getElementById('hotGames').innerHTML = hot.length ? hot.map(createCard).join('') : emptyMsg;
   document.getElementById('newGames').innerHTML = newG.length ? newG.map(createCard).join('') : emptyMsg;
   document.getElementById('freeGames').innerHTML = free.length ? free.map(createCard).join('') : emptyMsg;
