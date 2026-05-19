@@ -1103,11 +1103,13 @@ if (localStorage.getItem('cookies_accepted') === 'true') {
   document.getElementById('cookieBar').classList.add('hidden');
 }
 
+// Debug: show any errors directly in the page
 try {
   renderGames();
 } catch(e) {
-  console.error('Render error:', e.message);
-  document.getElementById('hotGames').innerHTML = '<p style="color:red;padding:20px">Error: ' + e.message + '</p>';
+  document.getElementById('hotGames').innerHTML = '<div style="color:red;padding:20px;background:#300;border:2px solid red;margin:20px"><h3>JavaScript Error</h3><p>' + e.toString() + '</p><pre>' + e.stack + '</pre></div>';
+  document.getElementById('newGames').innerHTML = '<p style="color:red;padding:20px">Error: ' + e.toString() + '</p>';
+  document.getElementById('freeGames').innerHTML = '<p style="color:red;padding:20px">Error: ' + e.toString() + '</p>';
 }
 </script>
 
