@@ -297,106 +297,96 @@ var _hmt = _hmt || [];
     font-size: 48px;
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     position: absolute; top: 0; left: 0;
-    transition: opacity 0.4s;
   }
 
-  .game-card .img-placeholder.hidden { opacity: 0; pointer-events: none; }
+  .game-card .info { padding: 12px; }
 
-  .game-card .info { padding: 14px; }
-
-  .game-card .info h3 {
-    font-size: 13px; font-weight: 700; margin-bottom: 8px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;
+  .game-card .title {
+    font-size: 14px; font-weight: 700;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    margin-bottom: 6px;
   }
 
-  .game-card .meta { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+  .game-card .meta {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--text-secondary);
+    flex-wrap: wrap;
+  }
 
-  .game-card .price { color: var(--accent-green); font-weight: 700; }
-  .game-card .price.free { color: var(--accent-cyan); }
-  .game-card .rating { display: flex; align-items: center; gap: 4px; color: var(--accent-orange); }
+  .game-card .price {
+    font-weight: 700; color: var(--accent-green);
+    font-size: 13px;
+  }
 
-  .game-card .tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .game-card .price.free { color: var(--accent-blue); }
+
+  .game-card .discount {
+    background: var(--accent-red);
+    color: #fff; font-size: 10px; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+  }
+
+  .game-card .rating {
+    color: var(--accent-orange); font-weight: 700;
+  }
+
+  .game-card .tags {
+    display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px;
+  }
 
   .game-card .tag {
-    font-size: 10px; padding: 2px 8px; border-radius: 10px;
-    background: rgba(102,192,244,0.1); color: var(--accent-blue);
-    border: 1px solid rgba(102,192,244,0.15);
+    font-size: 10px; padding: 2px 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 10px; color: var(--text-secondary);
   }
 
   .game-card .hot-badge {
-    position: absolute; top: 10px; left: 10px;
-    background: linear-gradient(135deg, #f44336, #ff5722);
-    color: #fff; font-size: 11px; font-weight: 700;
-    padding: 3px 10px; border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(244,67,54,0.4); z-index: 2;
+    position: absolute; top: 8px; right: 8px;
+    background: linear-gradient(135deg, var(--accent-red), #ff5722);
+    color: #fff; font-size: 10px; font-weight: 700;
+    padding: 4px 10px; border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(244,67,54,0.3);
+    z-index: 2;
   }
 
-  .game-card .discount-badge {
-    position: absolute; top: 10px; right: 10px;
-    background: var(--accent-green); color: #fff;
-    font-size: 12px; font-weight: 900;
-    padding: 3px 8px; border-radius: 4px; z-index: 2;
-  }
-
-  /* ===== 比价按钮 ===== */
-  .game-card .card-actions {
-    display: flex; gap: 6px; margin-top: 8px;
-  }
-
-  .game-card .card-actions .steam-btn {
-    flex: 1; padding: 5px 6px;
-    background: rgba(102,192,244,0.15);
-    border: 1px solid rgba(102,192,244,0.25);
+  .game-card .compare-btn {
+    display: block; width: 100%;
+    padding: 8px; margin-top: 8px;
+    background: rgba(102,192,244,0.1);
+    border: 1px solid var(--border-color);
     border-radius: 6px; color: var(--accent-blue);
-    font-size: 10px; font-weight: 700; text-align: center;
-    text-decoration: none; transition: all 0.2s; cursor: pointer;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    font-size: 11px; font-weight: 700;
+    text-align: center; text-decoration: none;
+    transition: all 0.2s;
   }
 
-  .game-card .card-actions .steam-btn:hover {
-    background: rgba(102,192,244,0.25);
+  .game-card .compare-btn:hover {
+    background: rgba(102,192,244,0.2);
     border-color: var(--accent-blue);
   }
 
-  .game-card .card-actions .compare-btn {
-    flex: 1; padding: 5px 6px;
-    background: rgba(76,175,80,0.12);
-    border: 1px solid rgba(76,175,80,0.2);
-    border-radius: 6px; color: var(--accent-green);
-    font-size: 10px; font-weight: 700; text-align: center;
-    text-decoration: none; transition: all 0.2s; cursor: pointer;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-
-  .game-card .card-actions .compare-btn:hover {
-    background: rgba(76,175,80,0.22);
-    border-color: var(--accent-green);
-  }
-
-  /* ===== 广告位系统 ===== */
+  /* ===== 广告位 ===== */
   .ad-slot {
-    border-radius: 12px;
-    overflow: hidden;
-    text-align: center;
     position: relative;
+    overflow: hidden;
   }
 
-  /* 顶部横幅广告 */
   .ad-slot-top {
-    background: linear-gradient(135deg, #0f1923 0%, #1a1040 50%, #0d1b2a 100%);
+    background: linear-gradient(135deg, rgba(102,192,244,0.1), rgba(156,39,176,0.1));
     border: 1px solid var(--border-color);
     border-radius: 16px;
-    padding: 28px 24px;
-    margin-bottom: 20px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    text-align: center;
     position: relative;
-    overflow: hidden;
   }
 
   .ad-slot-top::before {
     content: '';
     position: absolute; top: -50%; left: -50%;
     width: 200%; height: 200%;
-    background: conic-gradient(transparent, rgba(102,192,244,0.04), transparent, rgba(156,39,176,0.04), transparent);
+    background: conic-gradient(from 0deg, transparent, rgba(102,192,244,0.1), transparent 30%);
     animation: rotate-bg 20s linear infinite;
   }
 
@@ -894,6 +884,7 @@ var _hmt = _hmt || [];
 
 <script>
 const GAMES = [
+  // ===== FPS射击 =====
   { name:"Counter-Strike 2", cat:"fps", price:"免费", free:true, rating:4.8, hot:true, tags:["FPS","竞技","多人"], emoji:"🔫", discount:null, appId:730, players:"120万" },
   { name:"Call of Duty: MW III", cat:"fps", price:"¥299", free:false, rating:4.2, hot:true, tags:["FPS","剧情","多人"], emoji:"💥", discount:"-20%", appId:1938090, players:"8万" },
   { name:"Valorant", cat:"fps", price:"免费", free:true, rating:4.6, hot:true, tags:["FPS","战术","5v5"], emoji:"🎯", discount:null, appId:null, players:"65万" },
@@ -904,10 +895,18 @@ const GAMES = [
   { name:"Hunt: Showdown", cat:"fps", price:"¥98", free:false, rating:4.4, hot:false, tags:["FPS","PvPvE","恐怖"], emoji:"🩸", discount:null, appId:594650, players:"1.5万" },
   { name:"The Finals", cat:"fps", price:"免费", free:true, rating:4.0, hot:false, tags:["FPS","破坏","竞技"], emoji:"🏗️", discount:null, appId:2073850, players:"2万" },
   { name:"Battlefield 2042", cat:"fps", price:"¥59", free:false, rating:3.8, hot:false, tags:["FPS","大战场","载具"], emoji:"✈️", discount:"-70%", appId:1517290, players:"1万" },
+  { name:"Squad", cat:"fps", price:"¥149", free:false, rating:4.5, hot:false, tags:["FPS","战术","军事"], emoji:"🎖️", discount:null, appId:393380, players:"8K" },
+  { name:"Hell Let Loose", cat:"fps", price:"¥168", free:false, rating:4.4, hot:false, tags:["FPS","二战","战术"], emoji:"💣", discount:null, appId:686810, players:"12K" },
+  { name:"War Thunder", cat:"fps", price:"免费", free:true, rating:4.1, hot:false, tags:["FPS","载具","免费"], emoji:"✈️", discount:null, appId:236390, players:"45K" },
+  { name:"Deep Rock Galactic", cat:"fps", price:"¥90", free:false, rating:4.9, hot:true, tags:["FPS","合作","挖矿"], emoji:"⛏️", discount:null, appId:548430, players:"20K" },
+  
+  // ===== MOBA =====
   { name:"Dota 2", cat:"moba", price:"免费", free:true, rating:4.7, hot:true, tags:["MOBA","竞技","5v5"], emoji:"🗡️", discount:null, appId:570, players:"45万" },
   { name:"League of Legends", cat:"moba", price:"免费", free:true, rating:4.5, hot:true, tags:["MOBA","竞技","5v5"], emoji:"🏆", discount:null, appId:null, players:"80万" },
   { name:"Deadlock", cat:"moba", price:"免费", free:true, rating:4.2, hot:true, tags:["MOBA","TPS","Valve"], emoji:"🔒", discount:null, appId:1422450, players:"3万" },
   { name:"Smite 2", cat:"moba", price:"免费", free:true, rating:3.9, hot:false, tags:["MOBA","第三人称","神话"], emoji:"⚡", discount:null, appId:2437130, players:"0.5万" },
+  
+  // ===== RPG =====
   { name:"Elden Ring", cat:"rpg", price:"¥298", free:false, rating:4.9, hot:true, tags:["RPG","魂系","开放世界"], emoji:"💍", discount:"-25%", appId:1245620, players:"5万" },
   { name:"Baldur's Gate 3", cat:"rpg", price:"¥298", free:false, rating:4.9, hot:true, tags:["RPG","CRPG","剧情"], emoji:"🐉", discount:null, appId:1086940, players:"10万" },
   { name:"Cyberpunk 2077", cat:"rpg", price:"¥149", free:false, rating:4.5, hot:false, tags:["RPG","赛博朋克","开放世界"], emoji:"🌃", discount:"-50%", appId:1091500, players:"3万" },
@@ -915,68 +914,128 @@ const GAMES = [
   { name:"Diablo IV", cat:"rpg", price:"¥298", free:false, rating:4.1, hot:false, tags:["ARPG","刷宝","暗黑"], emoji:"👹", discount:"-40%", appId:null, players:"1万" },
   { name:"Path of Exile 2", cat:"rpg", price:"免费", free:true, rating:4.6, hot:true, tags:["ARPG","刷宝","暗黑"], emoji:"💀", discount:null, appId:2389720, players:"15万" },
   { name:"Monster Hunter Wilds", cat:"rpg", price:"¥398", free:false, rating:4.4, hot:true, tags:["ARPG","狩猎","多人"], emoji:"🦖", discount:null, appId:2246340, players:"8万" },
+  { name:"Hollow Knight", cat:"rpg", price:"¥58", free:false, rating:4.9, hot:false, tags:["RPG","动作","独立"], emoji:"🐛", discount:null, appId:367520, players:"15K" },
+  { name:"Hades", cat:"rpg", price:"¥92", free:false, rating:4.9, hot:true, tags:["RPG","动作","Roguelike"], emoji:"🔥", discount:null, appId:1145360, players:"20K" },
+  { name:"Celeste", cat:"rpg", price:"¥68", free:false, rating:4.9, hot:false, tags:["平台","独立","剧情"], emoji:"🏔️", discount:null, appId:504230, players:"8K" },
+  { name:"Undertale", cat:"rpg", price:"¥36", free:false, rating:4.9, hot:false, tags:["RPG","独立","剧情"], emoji:"💀", discount:null, appId:391540, players:"12K" },
+  { name:"Vampire Survivors", cat:"rpg", price:"¥20", free:false, rating:4.8, hot:false, tags:["Roguelike","动作","独立"], emoji:"🧛", discount:null, appId:1794680, players:"20K" },
+  { name:"Dave the Diver", cat:"rpg", price:"¥80", free:false, rating:4.8, hot:true, tags:["RPG","经营","冒险"], emoji:"🤿", discount:null, appId:1868140, players:"15K" },
+  { name:"Last Epoch", cat:"rpg", price:"¥128", free:false, rating:4.4, hot:false, tags:["RPG","ARPG","刷宝"], emoji:"⚔️", discount:null, appId:899770, players:"20K" },
+  { name:"Grim Dawn", cat:"rpg", price:"¥78", free:false, rating:4.8, hot:false, tags:["RPG","ARPG","刷宝"], emoji:"💀", discount:null, appId:219990, players:"8K" },
+  { name:"Risk of Rain 2", cat:"rpg", price:"¥80", free:false, rating:4.8, hot:false, tags:["RPG","Roguelike","射击"], emoji:"🌧️", discount:null, appId:632360, players:"15K" },
+  { name:"Slay the Spire", cat:"rpg", price:"¥80", free:false, rating:4.9, hot:false, tags:["RPG","卡牌","Roguelike"], emoji:"🗼", discount:null, appId:646570, players:"20K" },
+  { name:"Monster Train", cat:"rpg", price:"¥80", free:false, rating:4.7, hot:false, tags:["RPG","卡牌","Roguelike"], emoji:"🚂", discount:null, appId:1102190, players:"5K" },
+  
+  // ===== 生存 =====
   { name:"Palworld", cat:"survival", price:"¥98", free:false, rating:4.3, hot:true, tags:["生存","抓宠","建造"], emoji:"🐾", discount:"-20%", appId:1623730, players:"4万" },
   { name:"Rust", cat:"survival", price:"¥98", free:false, rating:4.2, hot:true, tags:["生存","PvP","建造"], emoji:"🔨", discount:null, appId:252490, players:"6万" },
   { name:"7 Days to Die", cat:"survival", price:"¥70", free:false, rating:4.1, hot:false, tags:["生存","僵尸","建造"], emoji:"🧟", discount:"-33%", appId:251570, players:"1.5万" },
   { name:"Subnautica", cat:"survival", price:"¥70", free:false, rating:4.7, hot:false, tags:["生存","探索","水下"], emoji:"🐠", discount:null, appId:264710, players:"0.8万" },
   { name:"The Forest", cat:"survival", price:"¥37", free:false, rating:4.5, hot:false, tags:["生存","恐怖","建造"], emoji:"🌲", discount:null, appId:242760, players:"0.6万" },
   { name:"Valheim", cat:"survival", price:"¥49", free:false, rating:4.6, hot:false, tags:["生存","维京","建造"], emoji:"⚓", discount:null, appId:892970, players:"1万" },
-  { name:"Civilization VII", cat:"strategy", price:"¥298", free:false, rating:4.0, hot:true, tags:["策略","4X","回合制"], emoji:"🏛️", discount:null, appId:1295660, players:"2万" },
-  { name:"Age of Empires IV", cat:"strategy", price:"¥99", free:false, rating:4.3, hot:false, tags:["策略","RTS","历史"], emoji:"⚔️", discount:"-50%", appId:1466860, players:"1万" },
-  { name:"Total War: Warhammer III", cat:"strategy", price:"¥188", free:false, rating:4.4, hot:false, tags:["策略","RTS","奇幻"], emoji:"🧙", discount:"-50%", appId:1142710, players:"1.5万" },
-  { name:"Hearts of Iron IV", cat:"strategy", price:"¥70", free:false, rating:4.6, hot:false, tags:["策略","二战","大战略"], emoji:"🌍", discount:null, appId:394360, players:"2万" },
-  { name:"Stellaris", cat:"strategy", price:"¥70", free:false, rating:4.5, hot:false, tags:["策略","4X","太空"], emoji:"🚀", discount:null, appId:281990, players:"1万" },
-  { name:"Forza Horizon 5", cat:"racing", price:"¥248", free:false, rating:4.7, hot:true, tags:["竞速","开放世界","拟真"], emoji:"🏎️", discount:"-50%", appId:1551360, players:"2万" },
-  { name:"Need for Speed Unbound", cat:"racing", price:"¥149", free:false, rating:3.9, hot:false, tags:["竞速","街头","改装"], emoji:"🏁", discount:"-60%", appId:1845420, players:"0.5万" },
-  { name:"Assetto Corsa", cat:"racing", price:"¥35", free:false, rating:4.5, hot:false, tags:["竞速","拟真","MOD"], emoji:"🏁", discount:null, appId:244210, players:"0.8万" },
-  { name:"EA FC 25", cat:"sports", price:"¥248", free:false, rating:3.7, hot:true, tags:["体育","足球","模拟"], emoji:"⚽", discount:"-40%", appId:2669320, players:"1万" },
-  { name:"NBA 2K25", cat:"sports", price:"¥298", free:false, rating:3.8, hot:false, tags:["体育","篮球","模拟"], emoji:"🏀", discount:"-50%", appId:2348520, players:"0.5万" },
-  { name:"Minecraft", cat:"sandbox", price:"¥89", free:false, rating:4.8, hot:true, tags:["沙盒","建造","生存"], emoji:"🧱", discount:null, appId:null, players:"15万" },
-  { name:"Terraria", cat:"sandbox", price:"¥22", free:false, rating:4.9, hot:true, tags:["沙盒","冒险","2D"], emoji:"🌳", discount:"-50%", appId:105600, players:"3万" },
-  { name:"Stardew Valley", cat:"sandbox", price:"¥31", free:false, rating:4.9, hot:false, tags:["沙盒","农场","模拟"], emoji:"🌾", discount:null, appId:413150, players:"1.5万" },
-  { name:"Factorio", cat:"sandbox", price:"¥105", free:false, rating:4.9, hot:false, tags:["沙盒","工厂","自动化"], emoji:"⚙️", discount:null, appId:427520, players:"1万" },
-  { name:"Lethal Company", cat:"horror", price:"¥30", free:false, rating:4.7, hot:true, tags:["恐怖","合作","外星"], emoji:"👽", discount:null, appId:1966720, players:"3万" },
-  { name:"Phasmophobia", cat:"horror", price:"¥36", free:false, rating:4.5, hot:false, tags:["恐怖","合作","捉鬼"], emoji:"👻", discount:null, appId:739630, players:"1万" },
-  { name:"Resident Evil 4", cat:"horror", price:"¥199", free:false, rating:4.7, hot:false, tags:["恐怖","动作","重制"], emoji:"🧟", discount:"-50%", appId:2050650, players:"1.5万" },
-  { name:"Amnesia: The Bunker", cat:"horror", price:"¥70", free:false, rating:4.2, hot:false, tags:["恐怖","解谜","一战"], emoji:"🔦", discount:"-40%", appId:1944430, players:"0.3万" },
-  { name:"Hollow Knight", cat:"rpg", price:"¥58", free:false, rating:4.9, hot:false, tags:["RPG","动作","独立"], emoji:"🐛", discount:null, appId:367520, players:"15K" },
-  { name:"Hades", cat:"rpg", price:"¥92", free:false, rating:4.9, hot:true, tags:["RPG","动作","Roguelike"], emoji:"🔥", discount:null, appId:1145360, players:"20K" },
-  { name:"Celeste", cat:"rpg", price:"¥68", free:false, rating:4.9, hot:false, tags:["平台","独立","剧情"], emoji:"🏔️", discount:null, appId:504230, players:"8K" },
-  { name:"Undertale", cat:"rpg", price:"¥36", free:false, rating:4.9, hot:false, tags:["RPG","独立","剧情"], emoji:"💀", discount:null, appId:391540, players:"12K" },
   { name:"No Man's Sky", cat:"survival", price:"¥175", free:false, rating:4.2, hot:false, tags:["生存","探索","太空"], emoji:"🚀", discount:null, appId:275850, players:"10K" },
   { name:"ARK: Survival Evolved", cat:"survival", price:"¥90", free:false, rating:4.0, hot:false, tags:["生存","恐龙","多人"], emoji:"🦕", discount:null, appId:346110, players:"35K" },
   { name:"DayZ", cat:"survival", price:"¥199", free:false, rating:4.0, hot:false, tags:["生存","僵尸","硬核"], emoji:"🩸", discount:null, appId:221100, players:"20K" },
-  { name:"Squad", cat:"fps", price:"¥149", free:false, rating:4.5, hot:false, tags:["FPS","战术","军事"], emoji:"🎖️", discount:null, appId:393380, players:"8K" },
-  { name:"Hell Let Loose", cat:"fps", price:"¥168", free:false, rating:4.4, hot:false, tags:["FPS","二战","战术"], emoji:"💣", discount:null, appId:686810, players:"12K" },
-  { name:"War Thunder", cat:"fps", price:"免费", free:true, rating:4.1, hot:false, tags:["FPS","载具","免费"], emoji:"✈️", discount:null, appId:236390, players:"45K" },
-  { name:"Vampire Survivors", cat:"rpg", price:"¥20", free:false, rating:4.8, hot:false, tags:["Roguelike","动作","独立"], emoji:"🧛", discount:null, appId:1794680, players:"20K" },
-  { name:"Balatro", cat:"strategy", price:"¥54", free:false, rating:4.9, hot:true, tags:["策略","卡牌","独立"], emoji:"🃏", discount:null, appId:2379780, players:"25K" },
-  { name:"Dave the Diver", cat:"rpg", price:"¥80", free:false, rating:4.8, hot:true, tags:["RPG","经营","冒险"], emoji:"🤿", discount:null, appId:1868140, players:"15K" },
-  { name:"Among Us", cat:"strategy", price:"¥22", free:false, rating:4.3, hot:false, tags:["策略","社交","多人"], emoji:"🔪", discount:null, appId:945360, players:"15K" },
-  { name:"Fall Guys", cat:"sports", price:"免费", free:true, rating:4.2, hot:false, tags:["体育","休闲","多人"], emoji:"🫘", discount:null, appId:1097150, players:"20K" },
-  { name:"Rocket League", cat:"sports", price:"免费", free:true, rating:4.7, hot:false, tags:["体育","赛车","竞技"], emoji:"🚗", discount:null, appId:252950, players:"35K" },
-  { name:"Euro Truck Simulator 2", cat:"racing", price:"¥88", free:false, rating:4.9, hot:false, tags:["竞速","模拟","休闲"], emoji:"🚛", discount:null, appId:227300, players:"20K" },
-  { name:"Cities: Skylines II", cat:"strategy", price:"¥218", free:false, rating:4.0, hot:false, tags:["策略","模拟","建造"], emoji:"🏙️", discount:null, appId:949230, players:"15K" },
-  { name:"Planet Coaster", cat:"strategy", price:"¥122", free:false, rating:4.7, hot:false, tags:["策略","模拟","建造"], emoji:"🎢", discount:null, appId:493340, players:"8K" },
-  { name:"Planet Zoo", cat:"strategy", price:"¥180", free:false, rating:4.6, hot:false, tags:["策略","模拟","动物"], emoji:"🦁", discount:null, appId:703080, players:"10K" },
   { name:"Don't Starve Together", cat:"survival", price:"¥24", free:false, rating:4.8, hot:false, tags:["生存","合作","独立"], emoji:"🎩", discount:null, appId:322330, players:"25K" },
   { name:"Green Hell", cat:"survival", price:"¥80", free:false, rating:4.5, hot:false, tags:["生存","硬核","恐怖"], emoji:"🌿", discount:null, appId:815370, players:"8K" },
   { name:"The Long Dark", cat:"survival", price:"¥108", free:false, rating:4.7, hot:false, tags:["生存","剧情","独立"], emoji:"❄️", discount:null, appId:305620, players:"10K" },
   { name:"Raft", cat:"survival", price:"¥76", free:false, rating:4.6, hot:false, tags:["生存","合作","建造"], emoji:"🛟", discount:null, appId:648800, players:"20K" },
   { name:"Core Keeper", cat:"survival", price:"¥58", free:false, rating:4.4, hot:false, tags:["生存","挖矿","多人"], emoji:"⛏️", discount:null, appId:1621690, players:"12K" },
   { name:"V Rising", cat:"survival", price:"¥108", free:false, rating:4.3, hot:false, tags:["生存","吸血鬼","PvP"], emoji:"🧛", discount:null, appId:1604030, players:"15K" },
-  { name:"Last Epoch", cat:"rpg", price:"¥128", free:false, rating:4.4, hot:false, tags:["RPG","ARPG","刷宝"], emoji:"⚔️", discount:null, appId:899770, players:"20K" },
-  { name:"Grim Dawn", cat:"rpg", price:"¥78", free:false, rating:4.8, hot:false, tags:["RPG","ARPG","刷宝"], emoji:"💀", discount:null, appId:219990, players:"8K" },
-  { name:"Risk of Rain 2", cat:"rpg", price:"¥80", free:false, rating:4.8, hot:false, tags:["RPG","Roguelike","射击"], emoji:"🌧️", discount:null, appId:632360, players:"15K" },
-  { name:"Deep Rock Galactic", cat:"fps", price:"¥90", free:false, rating:4.9, hot:true, tags:["FPS","合作","挖矿"], emoji:"⛏️", discount:null, appId:548430, players:"20K" },
+  
+  // ===== 策略 =====
+  { name:"Civilization VII", cat:"strategy", price:"¥298", free:false, rating:4.0, hot:true, tags:["策略","4X","回合制"], emoji:"🏛️", discount:null, appId:1295660, players:"2万" },
+  { name:"Age of Empires IV", cat:"strategy", price:"¥99", free:false, rating:4.3, hot:false, tags:["策略","RTS","历史"], emoji:"⚔️", discount:"-50%", appId:1466860, players:"1万" },
+  { name:"Total War: Warhammer III", cat:"strategy", price:"¥188", free:false, rating:4.4, hot:false, tags:["策略","RTS","奇幻"], emoji:"🧙", discount:"-50%", appId:1142710, players:"1.5万" },
+  { name:"Hearts of Iron IV", cat:"strategy", price:"¥70", free:false, rating:4.6, hot:false, tags:["策略","二战","大战略"], emoji:"🌍", discount:null, appId:394360, players:"2万" },
+  { name:"Stellaris", cat:"strategy", price:"¥70", free:false, rating:4.5, hot:false, tags:["策略","4X","太空"], emoji:"🚀", discount:null, appId:281990, players:"1万" },
+  { name:"Balatro", cat:"strategy", price:"¥54", free:false, rating:4.9, hot:true, tags:["策略","卡牌","独立"], emoji:"🃏", discount:null, appId:2379780, players:"25K" },
+  { name:"Among Us", cat:"strategy", price:"¥22", free:false, rating:4.3, hot:false, tags:["策略","社交","多人"], emoji:"🔪", discount:null, appId:945360, players:"15K" },
+  { name:"Cities: Skylines II", cat:"strategy", price:"¥218", free:false, rating:4.0, hot:false, tags:["策略","模拟","建造"], emoji:"🏙️", discount:null, appId:949230, players:"15K" },
+  { name:"Planet Coaster", cat:"strategy", price:"¥122", free:false, rating:4.7, hot:false, tags:["策略","模拟","建造"], emoji:"🎢", discount:null, appId:493340, players:"8K" },
+  { name:"Planet Zoo", cat:"strategy", price:"¥180", free:false, rating:4.6, hot:false, tags:["策略","模拟","动物"], emoji:"🦁", discount:null, appId:703080, players:"10K" },
   { name:"Satisfactory", cat:"strategy", price:"¥99", free:false, rating:4.9, hot:true, tags:["策略","自动化","建造"], emoji:"🏭", discount:null, appId:526870, players:"25K" },
   { name:"Dyson Sphere Program", cat:"strategy", price:"¥70", free:false, rating:4.9, hot:false, tags:["策略","自动化","太空"], emoji:"🌌", discount:null, appId:1366540, players:"15K" },
   { name:"Crusader Kings III", cat:"strategy", price:"¥218", free:false, rating:4.7, hot:false, tags:["策略","大战略","角色扮演"], emoji:"👑", discount:null, appId:1158310, players:"15K" },
   { name:"Frostpunk 2", cat:"strategy", price:"¥149", free:false, rating:4.2, hot:false, tags:["策略","生存","末日"], emoji:"❄️", discount:null, appId:1601580, players:"10K" },
-  { name:"Slay the Spire", cat:"rpg", price:"¥80", free:false, rating:4.9, hot:false, tags:["RPG","卡牌","Roguelike"], emoji:"🗼", discount:null, appId:646570, players:"20K" },
-  { name:"Monster Train", cat:"rpg", price:"¥80", free:false, rating:4.7, hot:false, tags:["RPG","卡牌","Roguelike"], emoji:"🚂", discount:null, appId:1102190, players:"5K" },
   { name:"Into the Breach", cat:"strategy", price:"¥58", free:false, rating:4.8, hot:false, tags:["策略","战棋","独立"], emoji:"🤖", discount:null, appId:590380, players:"5K" },
   { name:"FTL: Faster Than Light", cat:"strategy", price:"¥40", free:false, rating:4.8, hot:false, tags:["策略","Roguelike","太空"], emoji:"🚀", discount:null, appId:212680, players:"8K" },
+  
+  // ===== 竞速 =====
+  { name:"Forza Horizon 5", cat:"racing", price:"¥248", free:false, rating:4.7, hot:true, tags:["竞速","开放世界","拟真"], emoji:"🏎️", discount:"-50%", appId:1551360, players:"2万" },
+  { name:"Need for Speed Unbound", cat:"racing", price:"¥149", free:false, rating:3.9, hot:false, tags:["竞速","街头","改装"], emoji:"🏁", discount:"-60%", appId:1845420, players:"0.5万" },
+  { name:"Assetto Corsa", cat:"racing", price:"¥35", free:false, rating:4.5, hot:false, tags:["竞速","拟真","MOD"], emoji:"🏁", discount:null, appId:244210, players:"0.8万" },
+  { name:"Euro Truck Simulator 2", cat:"racing", price:"¥88", free:false, rating:4.9, hot:false, tags:["竞速","模拟","休闲"], emoji:"🚛", discount:null, appId:227300, players:"20K" },
+  
+  // ===== 体育 =====
+  { name:"EA FC 25", cat:"sports", price:"¥248", free:false, rating:3.7, hot:true, tags:["体育","足球","模拟"], emoji:"⚽", discount:"-40%", appId:2669320, players:"1万" },
+  { name:"NBA 2K25", cat:"sports", price:"¥298", free:false, rating:3.8, hot:false, tags:["体育","篮球","模拟"], emoji:"🏀", discount:"-50%", appId:2348520, players:"0.5万" },
+  { name:"Fall Guys", cat:"sports", price:"免费", free:true, rating:4.2, hot:false, tags:["体育","休闲","多人"], emoji:"🫘", discount:null, appId:1097150, players:"20K" },
+  { name:"Rocket League", cat:"sports", price:"免费", free:true, rating:4.7, hot:false, tags:["体育","赛车","竞技"], emoji:"🚗", discount:null, appId:252950, players:"35K" },
+  
+  // ===== 沙盒 =====
+  { name:"Minecraft", cat:"sandbox", price:"¥89", free:false, rating:4.8, hot:true, tags:["沙盒","建造","生存"], emoji:"🧱", discount:null, appId:null, players:"15万" },
+  { name:"Terraria", cat:"sandbox", price:"¥22", free:false, rating:4.9, hot:true, tags:["沙盒","冒险","2D"], emoji:"🌳", discount:"-50%", appId:105600, players:"3万" },
+  { name:"Stardew Valley", cat:"sandbox", price:"¥31", free:false, rating:4.9, hot:false, tags:["沙盒","农场","模拟"], emoji:"🌾", discount:null, appId:413150, players:"1.5万" },
+  { name:"Factorio", cat:"sandbox", price:"¥105", free:false, rating:4.9, hot:false, tags:["沙盒","工厂","自动化"], emoji:"⚙️", discount:null, appId:427520, players:"1万" },
+  
+  // ===== 恐怖 =====
+  { name:"Lethal Company", cat:"horror", price:"¥30", free:false, rating:4.7, hot:true, tags:["恐怖","合作","外星"], emoji:"👽", discount:null, appId:1966720, players:"3万" },
+  { name:"Phasmophobia", cat:"horror", price:"¥36", free:false, rating:4.5, hot:false, tags:["恐怖","合作","捉鬼"], emoji:"👻", discount:null, appId:739630, players:"1万" },
+  { name:"Resident Evil 4", cat:"horror", price:"¥199", free:false, rating:4.7, hot:false, tags:["恐怖","动作","重制"], emoji:"🧟", discount:"-50%", appId:2050650, players:"1.5万" },
+  { name:"Amnesia: The Bunker", cat:"horror", price:"¥70", free:false, rating:4.2, hot:false, tags:["恐怖","解谜","一战"], emoji:"🔦", discount:"-40%", appId:1944430, players:"0.3万" },
+  
+  // ===== 新增50个游戏 =====
+  // 2024-2025新出游戏
+  { name:"Black Myth: Wukong", cat:"rpg", price:"¥268", free:false, rating:4.8, hot:true, tags:["RPG","动作","神话"], emoji:"🐵", discount:null, appId:2358720, players:"50万" },
+  { name:"S.T.A.L.K.E.R. 2", cat:"fps", price:"¥298", free:false, rating:4.3, hot:true, tags:["FPS","开放世界","末日"], emoji:"☢️", discount:null, appId:1643320, players:"8万" },
+  { name:"Avowed", cat:"rpg", price:"¥298", free:false, rating:4.2, hot:true, tags:["RPG","奇幻","第一人称"], emoji:"⚔️", discount:null, appId:2457220, players:"5万" },
+  { name:"Monster Hunter Wilds", cat:"rpg", price:"¥398", free:false, rating:4.4, hot:true, tags:["ARPG","狩猎","多人"], emoji:"🦖", discount:null, appId:2246340, players:"30万" },
+  { name:"Civilization VII", cat:"strategy", price:"¥298", free:false, rating:4.0, hot:true, tags:["策略","4X","回合制"], emoji:"🏛️", discount:null, appId:1295660, players:"15万" },
+  { name:"Schedule I", cat:"simulation", price:"¥58", free:false, rating:4.7, hot:true, tags:["模拟","犯罪","经营"], emoji:"💊", discount:null, appId:3184050, players:"20万" },
+  { name:"R.E.P.O.", cat:"horror", price:"¥42", free:false, rating:4.8, hot:true, tags:["恐怖","合作","搞笑"], emoji:"🤖", discount:null, appId:3241660, players:"15万" },
+  { name:"Doom: The Dark Ages", cat:"fps", price:"¥298", free:false, rating:4.5, hot:true, tags:["FPS","动作","中世纪"], emoji:"⚔️", discount:null, appId:3014840, players:"10万" },
+  { name:"Indiana Jones and the Great Circle", cat:"adventure", price:"¥298", free:false, rating:4.4, hot:true, tags:["冒险","动作","第一人称"], emoji:"🤠", discount:null, appId:2677660, players:"5万" },
+  { name:"Kingdom Come: Deliverance II", cat:"rpg", price:"¥298", free:false, rating:4.6, hot:true, tags:["RPG","中世纪","开放世界"], emoji:"🏰", discount:null, appId:1778820, players:"12万" },
+  { name:"Assassin's Creed Shadows", cat:"rpg", price:"¥298", free:false, rating:4.1, hot:true, tags:["RPG","动作","潜行"], emoji:"🥷", discount:null, appId:3159330, players:"8万" },
+  { name:"Split Fiction", cat:"adventure", price:"¥198", free:false, rating:4.7, hot:true, tags:["冒险","合作","科幻"], emoji:"📚", discount:null, appId:2001120, players:"10万" },
+  { name:"KCD2", cat:"rpg", price:"¥298", free:false, rating:4.6, hot:true, tags:["RPG","中世纪","真实"], emoji:"⚔️", discount:null, appId:1778820, players:"12万" },
+  { name:"inZOI", cat:"simulation", price:"¥188", free:false, rating:4.0, hot:true, tags:["模拟","生活","韩系"], emoji:"🏠", discount:null, appId:2456740, players:"15万" },
+  { name:"Clair Obscur: Expedition 33", cat:"rpg", price:"¥198", free:false, rating:4.7, hot:true, tags:["RPG","回合制","法式"], emoji:"🎭", discount:null, appId:1903340, players:"8万" },
+  { name:"Light No Fire", cat:"survival", price:"¥128", free:false, rating:4.2, hot:true, tags:["生存","开放世界","探索"], emoji:"🔥", discount:null, appId:2816950, players:"5万" },
+  { name:"Nightingale", cat:"survival", price:"¥108", free:false, rating:3.9, hot:false, tags:["生存","维多利亚","魔法"], emoji:"🌙", discount:null, appId:1928980, players:"2万" },
+  { name:"Enshrouded", cat:"survival", price:"¥98", free:false, rating:4.3, hot:true, tags:["生存","建造","多人"], emoji:"🌫️", discount:null, appId:1203620, players:"10万" },
+  { name:"Soulmask", cat:"survival", price:"¥108", free:false, rating:4.1, hot:true, tags:["生存","部落","建造"], emoji:"🎭", discount:null, appId:2646460, players:"5万" },
+  { name:"ARK 2", cat:"survival", price:"¥298", free:false, rating:4.0, hot:false, tags:["生存","恐龙","开放世界"], emoji:"🦕", discount:null, appId:1647250, players:"3万" },
+  { name:"Nebula Nomads", cat:"survival", price:"¥68", free:false, rating:4.2, hot:false, tags:["生存","太空","探索"], emoji:"🌌", discount:null, appId:2934530, players:"2万" },
+  { name:"The Alters", cat:"survival", price:"¥98", free:false, rating:4.3, hot:false, tags:["生存","科幻","克隆"], emoji:"👥", discount:null, appId:2609850, players:"3万" },
+  { name:"Satisfactory 1.0", cat:"strategy", price:"¥99", free:false, rating:4.9, hot:true, tags:["策略","自动化","建造"], emoji:"🏭", discount:null, appId:526870, players:"25万" },
+  { name:"Manor Lords", cat:"strategy", price:"¥149", free:false, rating:4.4, hot:true, tags:["策略","中世纪","城市建造"], emoji:"🏰", discount:null, appId:1363080, players:"15万" },
+  { name:"Millennia", cat:"strategy", price:"¥198", free:false, rating:4.0, hot:false, tags:["策略","4X","历史"], emoji:"🏛️", discount:null, appId:2384970, players:"3万" },
+  { name:"Ara: History Untold", cat:"strategy", price:"¥298", free:false, rating:3.9, hot:false, tags:["策略","4X","历史"], emoji:"📜", discount:null, appId:2028920, players:"2万" },
+  { name:"Stormgate", cat:"strategy", price:"免费", free:true, rating:4.1, hot:true, tags:["策略","RTS","科幻"], emoji:"⚡", discount:null, appId:2012510, players:"5万" },
+  { name:"ZeroSpace", cat:"strategy", price:"¥128", free:false, rating:4.0, hot:false, tags:["策略","RTS","科幻"], emoji:"🌌", discount:null, appId:2511500, players:"2万" },
+  { name:"Dune: Awakening", cat:"survival", price:"¥298", free:false, rating:4.2, hot:true, tags:["生存","MMO","沙丘"], emoji:"🏜️", discount:null, appId:1172710, players:"10万" },
+  { name:"Marvel Rivals", cat:"fps", price:"免费", free:true, rating:4.3, hot:true, tags:["FPS","英雄","6v6"], emoji:"🦸", discount:null, appId:2767030, players:"20万" },
+  { name:"Spectre Divide", cat:"fps", price:"免费", free:true, rating:4.0, hot:false, tags:["FPS","战术","3v3"], emoji:"👻", discount:null, appId:2408820, players:"3万" },
+  { name:"FragPunk", cat:"fps", price:"免费", free:true, rating:4.1, hot:true, tags:["FPS","快节奏","5v5"], emoji:"💥", discount:null, appId:2949290, players:"8万" },
+  { name:"Strinova", cat:"fps", price:"免费", free:true, rating:4.0, hot:false, tags:["FPS","二次元","5v5"], emoji:"🎌", discount:null, appId:2840680, players:"5万" },
+  { name:"Delta Force: Hawk Ops", cat:"fps", price:"免费", free:true, rating:4.2, hot:true, tags:["FPS","战术","现代战争"], emoji:"🦅", discount:null, appId:2507950, players:"15万" },
+  { name:"Gray Zone Warfare", cat:"fps", price:"¥128", free:false, rating:4.1, hot:true, tags:["FPS","战术","开放世界"], emoji:"🎯", discount:null, appId:2479890, players:"5万" },
+  { name:"Arena Breakout: Infinite", cat:"fps", price:"免费", free:true, rating:4.0, hot:true, tags:["FPS","撤离","战术"], emoji:"💰", discount:null, appId:2917450, players:"10万" },
+  { name:"GTA VI", cat:"sandbox", price:"¥298", free:false, rating:4.9, hot:true, tags:["沙盒","开放世界","犯罪"], emoji:"🌴", discount:null, appId:null, players:"预计100万+" },
+  { name:"Mafia: The Old Country", cat:"adventure", price:"¥298", free:false, rating:4.4, hot:true, tags:["冒险","黑帮","开放世界"], emoji:"🤵", discount:null, appId:2145790, players:"5万" },
+  { name:"Death Stranding 2", cat:"adventure", price:"¥298", free:false, rating:4.6, hot:true, tags:["冒险","送快递","科幻"], emoji:"📦", discount:null, appId:1850480, players:"8万" },
+  { name:"Little Nightmares III", cat:"horror", price:"¥148", free:false, rating:4.3, hot:true, tags:["恐怖","解谜","合作"], emoji:"😰", discount:null, appId:1394740, players:"3万" },
+  { name:"Directive 8020", cat:"horror", price:"¥198", free:false, rating:4.2, hot:false, tags:["恐怖","科幻","电影式"], emoji:"🚀", discount:null, appId:2918610, players:"2万" },
+  { name:"Alan Wake 2", cat:"horror", price:"¥198", free:false, rating:4.7, hot:true, tags:["恐怖","剧情","心理"], emoji:"📝", discount:"-30%", appId:1903340, players:"5万" },
+  { name:"Silent Hill 2 Remake", cat:"horror", price:"¥298", free:false, rating:4.6, hot:true, tags:["恐怖","重制","心理"], emoji:"🌫️", discount:null, appId:2124490, players:"8万" },
+  { name:"Until Dawn Remake", cat:"horror", price:"¥298", free:false, rating:4.1, hot:false, tags:["恐怖","互动电影","重制"], emoji:"🦋", discount:null, appId:2178280, players:"3万" },
+  { name:"Alone in the Dark", cat:"horror", price:"¥198", free:false, rating:3.9, hot:false, tags:["恐怖","生存","经典重启"], emoji:"🏚️", discount:null, appId:1310410, players:"1万" },
+  { name:"Need for Speed Mobile", cat:"racing", price:"免费", free:true, rating:3.8, hot:false, tags:["竞速","手游移植","街头"], emoji:"📱", discount:null, appId:2590100, players:"5万" },
+  { name:"Test Drive Unlimited Solar Crown", cat:"racing", price:"¥298", free:false, rating:3.7, hot:false, tags:["竞速","开放世界","豪华"], emoji:"🏎️", discount:null, appId:1249970, players:"2万" },
+  { name:"F1 25", cat:"racing", price:"¥298", free:false, rating:4.2, hot:true, tags:["竞速","F1","拟真"], emoji:"🏁", discount:null, appId:2488620, players:"5万" },
+  { name:"Wreckfest 2", cat:"racing", price:"¥168", free:false, rating:4.3, hot:true, tags:["竞速","破坏","物理"], emoji:"💥", discount:null, appId:1203180, players:"3万" },
 ];
 
 let currentCat = 'all';
@@ -997,150 +1056,125 @@ function getCompareUrl(name) {
 
 function createCard(game) {
   const hotBadge = game.hot ? '<span class="hot-badge">🔥 HOT</span>' : '';
-  const discountBadge = game.discount ? `<span class="discount-badge">${game.discount}</span>` : '';
-  const tagsHtml = game.tags.map(t => `<span class="tag">${t}</span>`).join('');
-  const stars = '★'.repeat(Math.round(game.rating)) + '☆'.repeat(5 - Math.round(game.rating));
-  const priceClass = game.free ? 'price free' : 'price';
-  const headerUrl = getHeaderUrl(game.appId);
-
-  let coverHtml;
-  if (headerUrl) {
-    coverHtml = `
+  const imgUrl = getHeaderUrl(game.appId);
+  const imgHtml = imgUrl 
+    ? `<img class="cover" src="${imgUrl}" alt="${game.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+    : '';
+  const placeholderHtml = `<div class="img-placeholder" style="${imgUrl?'display:none;':''}">${game.emoji}</div>`;
+  
+  return `
+    <div class="game-card" onclick="window.open('${getStoreUrl(game.appId, game.name)}','_blank')">
       <div class="cover-wrap">
-        <div class="img-placeholder" id="ph_${game.appId}">${game.emoji}</div>
-        <img class="cover" src="${headerUrl}" alt="${game.name}" loading="lazy"
-          onload="document.getElementById('ph_${game.appId}').classList.add('hidden')"
-          onerror="this.style.display='none'">
-      </div>`;
-  } else {
-    coverHtml = `<div class="cover-wrap"><div class="img-placeholder">${game.emoji}</div></div>`;
-  }
-
-  const steamUrl = getStoreUrl(game.appId, game.name);
-  const compareUrl = getCompareUrl(game.name);
-
-  return `
-    <div class="game-card" data-cat="${game.cat}" data-name="${game.name.toLowerCase()}">
-      ${hotBadge}${discountBadge}
-      ${coverHtml}
+        ${hotBadge}
+        ${imgHtml}
+        ${placeholderHtml}
+      </div>
       <div class="info">
-        <h3>${game.name}</h3>
+        <div class="title">${game.name}</div>
         <div class="meta">
-          <span class="${priceClass}">${game.price}</span>
-          <span class="rating"><span>${stars}</span> ${game.rating}</span>
+          <span class="price ${game.free?'free':''}">${game.price}</span>
+          ${game.discount?`<span class="discount">${game.discount}</span>`:''}
+          <span class="rating">⭐ ${game.rating}</span>
+          <span>👥 ${game.players}</span>
         </div>
-        <div class="tags">${tagsHtml}</div>
-        <div class="card-actions">
-          <a class="steam-btn" href="${steamUrl}" target="_blank" onclick="event.stopPropagation()">🚀 Steam</a>
-          <a class="compare-btn" href="${compareUrl}" target="_blank" onclick="event.stopPropagation()">💎 比价</a>
+        <div class="tags">
+          ${game.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
         </div>
+        <a class="compare-btn" href="${getCompareUrl(game.name)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+          💰 比价购买
+        </a>
       </div>
-    </div>`;
-}
-
-function createRankItem(game, idx) {
-  const numClass = idx === 0 ? 'rank-num top1' : idx === 1 ? 'rank-num top2' : idx === 2 ? 'rank-num top3' : 'rank-num';
-  const thumb = game.appId
-    ? `<img class="rank-thumb" src="img/${game.appId}.jpg" alt="${game.name}" loading="lazy" onerror="this.style.display='none'">`
-    : `<div class="rank-thumb" style="display:flex;align-items:center;justify-content:center;font-size:16px">${game.emoji}</div>`;
-
-  return `
-    <div class="rank-item" onclick="window.open('${getStoreUrl(game.appId, game.name)}', '_blank')">
-      <span class="${numClass}">${idx + 1}</span>
-      <div class="rank-info">
-        <div class="name">${game.name}</div>
-        <div class="players">${game.players} 在线</div>
-      </div>
-      ${thumb}
-    </div>`;
+    </div>
+  `;
 }
 
 function renderGames() {
-  console.log('renderGames called');
-  const search = document.getElementById('searchInput').value.toLowerCase().trim();
-  const filter = g => {
-    const catOk = currentCat === 'all' || g.cat === currentCat;
-    const searchOk = !search || g.name.toLowerCase().includes(search) || g.tags.some(t => t.toLowerCase().includes(search));
-    return catOk && searchOk;
-  };
-
-  const hot = GAMES.filter(g => filter(g) && g.hot);
-  console.log('Hot games:', hot.length);
-  const newG = GAMES.filter(g => filter(g) && !g.hot && !g.free).slice(0, 8);
-  const free = GAMES.filter(g => filter(g) && g.free);
-  const emptyMsg = '<p style="color:var(--text-secondary);grid-column:1/-1;text-align:center;padding:32px">暂无匹配结果</p>';
-
-  console.log('Setting hotGames, count:', hot.length);
-  document.getElementById('hotGames').innerHTML = hot.length ? hot.map(createCard).join('') : emptyMsg;
-  document.getElementById('newGames').innerHTML = newG.length ? newG.map(createCard).join('') : emptyMsg;
-  document.getElementById('freeGames').innerHTML = free.length ? free.map(createCard).join('') : emptyMsg;
-
-  // 侧栏排行
-  const parsePlayers = p => {
-    if (typeof p === 'number') return p;
-    const s = String(p).trim();
-    const n = parseFloat(s);
-    if (s.includes('万')) return n * 10000;
-    if (s.includes('K') || s.includes('k')) return n * 1000;
-    return n;
-  };
-  const byPlayers = [...GAMES].sort((a, b) => parsePlayers(b.players) - parsePlayers(a.players)).slice(0, 8);
-  document.getElementById('rankList').innerHTML = byPlayers.map((g, i) => createRankItem(g, i)).join('');
-
-  const byRating = [...GAMES].sort((a, b) => b.rating - a.rating).slice(0, 8);
-  document.getElementById('ratingList').innerHTML = byRating.map((g, i) => createRankItem(g, i)).join('');
-
+  const hot = GAMES.filter(g=>g.hot);
+  const free = GAMES.filter(g=>g.free);
+  const allNew = GAMES.slice().sort((a,b)=>b.rating - a.rating).slice(0,12);
+  
+  document.getElementById('hotGames').innerHTML = hot.map(createCard).join('');
+  document.getElementById('newGames').innerHTML = allNew.map(createCard).join('');
+  document.getElementById('freeGames').innerHTML = free.map(createCard).join('');
+  
+  // 更新统计
   document.getElementById('totalCount').textContent = GAMES.length;
-  document.getElementById('onlineCount').textContent = (2800 + Math.floor(Math.random() * 400));
+  const totalPlayers = GAMES.reduce((sum,g)=>{
+    const num = parseFloat(g.players.replace(/[^0-9.]/g,''));
+    const unit = g.players.includes('万') ? 10000 : 1;
+    return sum + (isNaN(num)?0:num*unit);
+  },0);
+  document.getElementById('onlineCount').textContent = (totalPlayers/10000).toFixed(1);
+  
+  // 人气排行
+  const sorted = GAMES.slice().sort((a,b)=>{
+    const na = parseFloat(a.players.replace(/[^0-9.]/g,'')) * (a.players.includes('万')?10000:1);
+    const nb = parseFloat(b.players.replace(/[^0-9.]/g,'')) * (b.players.includes('万')?10000:1);
+    return nb - na;
+  }).slice(0,10);
+  
+  document.getElementById('rankList').innerHTML = sorted.map((g,i)=>{
+    const rankClass = i<3?['top1','top2','top3'][i]:'';
+    const thumb = g.appId?`<img class="rank-thumb" src="img/${g.appId}.jpg" alt="" loading="lazy">`:`<div class="rank-thumb" style="display:flex;align-items:center;justify-content:center;font-size:16px">${g.emoji}</div>`;
+    return `
+      <div class="rank-item" onclick="window.open('${getStoreUrl(g.appId,g.name)}','_blank')">
+        <div class="rank-num ${rankClass}">${i+1}</div>
+        ${thumb}
+        <div class="rank-info">
+          <div class="name">${g.name}</div>
+          <div class="players">👥 ${g.players}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  // 好评排行
+  const ratingSorted = GAMES.slice().sort((a,b)=>b.rating - a.rating).slice(0,10);
+  document.getElementById('ratingList').innerHTML = ratingSorted.map((g,i)=>{
+    const rankClass = i<3?['top1','top2','top3'][i]:'';
+    return `
+      <div class="rank-item" onclick="window.open('${getStoreUrl(g.appId,g.name)}','_blank')">
+        <div class="rank-num ${rankClass}">${i+1}</div>
+        <div class="rank-info">
+          <div class="name">${g.name}</div>
+          <div class="players">⭐ ${g.rating} · ${g.players}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function setCategory(btn) {
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   currentCat = btn.dataset.cat;
-  renderGames();
+  filterGames();
 }
 
-function filterGames() { renderGames(); }
+function filterGames() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = GAMES.filter(g=>{
+    const matchCat = currentCat==='all' || g.cat===currentCat;
+    const matchSearch = !q || g.name.toLowerCase().includes(q) || g.tags.some(t=>t.toLowerCase().includes(q));
+    return matchCat && matchSearch;
+  });
+  
+  document.getElementById('hotGames').innerHTML = filtered.filter(g=>g.hot).map(createCard).join('');
+  document.getElementById('newGames').innerHTML = filtered.slice().sort((a,b)=>b.rating-a.rating).slice(0,12).map(createCard).join('');
+  document.getElementById('freeGames').innerHTML = filtered.filter(g=>g.free).map(createCard).join('');
+}
 
 function acceptCookies() {
   document.getElementById('cookieBar').classList.add('hidden');
-  localStorage.setItem('cookies_accepted', 'true');
-  // 启用 AdSense 广告追踪
-  if (typeof gtag === 'function') {
-    gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted' });
-  }
+  localStorage.setItem('cookiesAccepted','true');
 }
 
-// 初始化
-if (localStorage.getItem('cookies_accepted') === 'true') {
+if(localStorage.getItem('cookiesAccepted')) {
   document.getElementById('cookieBar').classList.add('hidden');
 }
 
-// 页面加载完成后渲染游戏
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', renderGames);
-} else {
-  renderGames();
-}
+// 页面加载完成后渲染
+document.addEventListener('DOMContentLoaded', renderGames);
 </script>
-
-
-<!-- 游戏列表结构化数据 -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Steam热门游戏榜单",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "item": {"@type": "VideoGame", "name": "Counter-Strike 2", "url": "https://store.steampowered.com/app/730"}},
-    {"@type": "ListItem", "position": 2, "item": {"@type": "VideoGame", "name": "Dota 2", "url": "https://store.steampowered.com/app/570"}},
-    {"@type": "ListItem", "position": 3, "item": {"@type": "VideoGame", "name": "Elden Ring", "url": "https://store.steampowered.com/app/1245620"}},
-    {"@type": "ListItem", "position": 4, "item": {"@type": "VideoGame", "name": "Baldur's Gate 3", "url": "https://store.steampowered.com/app/1086940"}},
-    {"@type": "ListItem", "position": 5, "item": {"@type": "VideoGame", "name": "Path of Exile 2", "url": "https://store.steampowered.com/app/2389720"}}
-  ]
-}
-</script>
-
 </body>
 </html>
